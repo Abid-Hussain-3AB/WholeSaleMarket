@@ -19,13 +19,13 @@ public class BuyerActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolBar);
         tabLayout = findViewById(R.id.tablayout);
         viewPager = findViewById(R.id.viewpager);
+        viewPager = findViewById(R.id.viewpager);
+        viewPager = findViewById(R.id.viewpager);
+        viewPager = findViewById(R.id.viewpager);
         setSupportActionBar(toolbar);
         tabLayout.addTab(tabLayout.newTab().setText("All Products"));
         tabLayout.addTab(tabLayout.newTab().setText("Apparel"));
         tabLayout.addTab(tabLayout.newTab().setText("Jewelry"));
-        tabLayout.addTab(tabLayout.newTab().setText("New Test"));
-        tabLayout.addTab(tabLayout.newTab().setText("New Test"));
-        tabLayout.addTab(tabLayout.newTab().setText("New Test"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         fragmentAdapter = new AdapterFragments(getSupportFragmentManager(),tabLayout.getTabCount());
         viewPager.setAdapter(fragmentAdapter);
