@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/teal_700"
+    android:orientation="vertical"
+    tools:context=".Other.SignInActivity">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/filledTextField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        app:endIconMode="custom"
+        app:endIconTint="@color/cardview_dark_background"
+        app:endIconDrawable="@drawable/ic_round_person"
+        android:layout_marginEnd="32dp"
+        android:hint="Phone Number">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etSignInPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="0"
+            android:maxLines="1"
+            android:maxLength="11"
+            android:phoneNumber="false"
+            android:textColor="@color/teal_700"
+            tools:ignore="Deprecated" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/filledTextField2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="10dp"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/cardview_dark_background"
+        android:layout_marginEnd="32dp"
+        android:hint="Password">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etSignInPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="0"
+            android:maxLines="1"
+            android:maxLength="7"
+            android:password="true"
+            android:textColor="@color/design_default_color_background"
+            tools:ignore="Deprecated" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="32dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:contentDescription="@string/appbar_scrolling_view_behavior"
+        android:dropDownWidth="wrap_content"
+        android:minWidth="60dp"
+        android:minHeight="50dp"
+        android:popupBackground="?android:attr/galleryItemBackground" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:text="SignIn"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="29sp"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/btnSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|end"
+            android:layout_marginLeft="110dp"
+            android:text="SignUp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="29sp" />
+    </LinearLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

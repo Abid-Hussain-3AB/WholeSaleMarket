@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Admin.ShopApprovalActivity">
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="Register" />
+
+    <TextView
+        android:id="@+id/tvShopId1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:text="ID"
+        tools:text="ID" />
+
+    <TextView
+        android:id="@+id/tvShopName1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:text="Name"
+        tools:text="Name" />
+
+    <TextView
+        android:id="@+id/tvShopCity1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:text="City"
+        tools:text="City" />
+
+    <TextView
+        android:id="@+id/tvShopType1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:text="Type"
+        tools:text="Type" />
+
+    <Button
+        android:id="@+id/btnConfirmRequest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confrim"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btnCancelRequest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
