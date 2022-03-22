@@ -25,11 +25,6 @@ public class BuyerActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         tabLayout.addTab(tabLayout.newTab().setText("All Products"));
         tabLayout.addTab(tabLayout.newTab().setText("Apparel"));
-        tabLayout.addTab(tabLayout.newTab().setText("Apparel"));
-        tabLayout.addTab(tabLayout.newTab().setText("Apparel"));
-        tabLayout.addTab(tabLayout.newTab().setText("Jewelry"));
-        tabLayout.addTab(tabLayout.newTab().setText("Jewelry"));
-        tabLayout.addTab(tabLayout.newTab().setText("Jewelry"));
         tabLayout.addTab(tabLayout.newTab().setText("Jewelry"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         fragmentAdapter = new AdapterFragments(getSupportFragmentManager(),tabLayout.getTabCount());
