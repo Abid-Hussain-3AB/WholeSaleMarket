@@ -16,30 +16,29 @@ import com.bumptech.glide.Glide;
 import com.example.myapplication.DataClasses.ProductDataClass;
 import com.example.myapplication.Owner.EditDelProductActivity;
 import com.example.myapplication.R;
-import com.google.firebase.storage.StorageReference;
+import com.example.myapplication.User.DetailActivity;
 
 import java.util.List;
 
-public class AdapterClassOwner extends RecyclerView.Adapter<AdapterClassOwner.ViewHolder> {
+public class AdapterClassProduct extends RecyclerView.Adapter<AdapterClassProduct.ViewHolder>{
     private List<ProductDataClass> productDataClasses;
     Context context;
-    StorageReference mStorageReference;
 
-    public AdapterClassOwner(List<ProductDataClass> productDataClasses, Context context) {
+    public AdapterClassProduct(List<ProductDataClass> productDataClasses, Context context) {
         this.productDataClasses = productDataClasses;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.owner_products_view, parent, false);
-        return new ViewHolder(view);
+    public AdapterClassProduct.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_view, parent, false);
+        return new AdapterClassProduct.ViewHolder(view);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterClassProduct.ViewHolder holder, int position) {
         ProductDataClass productDataClass = productDataClasses.get(position);
         holder.tvPName.setText("Product Name: " + productDataClass.getProductName());
         holder.tvPType.setText("Product Type: " + productDataClass.getProductType());
@@ -48,7 +47,7 @@ public class AdapterClassOwner extends RecyclerView.Adapter<AdapterClassOwner.Vi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, EditDelProductActivity.class);
+                Intent intent = new Intent(context, DetailActivity.class);
                 intent.putExtra("image",productDataClass.getImage());
                 intent.putExtra("ID", productDataClass.getProductId());
                 context.startActivity(intent);
@@ -67,10 +66,10 @@ public class AdapterClassOwner extends RecyclerView.Adapter<AdapterClassOwner.Vi
         ImageView imgproducts;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvPName = itemView.findViewById(R.id.tvProductName);
-            tvPType = itemView.findViewById(R.id.tvProductType);
-            tvPQuantity = itemView.findViewById(R.id.tvProductQuantity);
-            imgproducts = itemView.findViewById(R.id.ImgProductowner);
+            tvPName = itemView.findViewById(R.id.tvProductNameB);
+            tvPType = itemView.findViewById(R.id.tvProductTypeB);
+            tvPQuantity = itemView.findViewById(R.id.tvProductQuantityB);
+            imgproducts = itemView.findViewById(R.id.ImgProduct);
         }
     }
 }

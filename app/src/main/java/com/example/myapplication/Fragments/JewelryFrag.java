@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.myapplication.AdapterClasses.AdapterClassOwner;
+import com.example.myapplication.AdapterClasses.AdapterClassProduct;
 import com.example.myapplication.DataClasses.ProductDataClass;
 import com.example.myapplication.R;
 import com.google.firebase.database.DataSnapshot;
@@ -27,7 +28,7 @@ public class JewelryFrag extends Fragment {
 
     private DatabaseReference mFirebaseDatabase;
     RecyclerView recyclerView;
-    AdapterClassOwner adapterClassOwner;
+    AdapterClassProduct adapterClassProduct;
     private List<ProductDataClass> productDataClassesList;
     List<String> arrayLists;
     View v;
@@ -58,9 +59,8 @@ public class JewelryFrag extends Fragment {
                         }
                     }
                 }
-
-                adapterClassOwner = new AdapterClassOwner(productDataClassesList, getContext());
-                recyclerView.setAdapter(adapterClassOwner);
+                adapterClassProduct = new AdapterClassProduct(productDataClassesList, getContext());
+                recyclerView.setAdapter(adapterClassProduct);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
