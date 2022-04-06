@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 
 public class DetailActivity extends AppCompatActivity {
@@ -26,5 +27,6 @@ String imgUrl;
         Type.setText(intent.getStringExtra("type"));
         Quantity.setText(intent.getStringExtra("quantity"));
         imgUrl = intent.getStringExtra("image");
+        Glide.with(this).load(imgUrl).into(imageView);
     }
 }
