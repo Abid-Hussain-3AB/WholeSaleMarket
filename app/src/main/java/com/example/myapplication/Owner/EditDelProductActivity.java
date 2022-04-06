@@ -88,7 +88,7 @@ public class EditDelProductActivity extends AppCompatActivity {
                         } else if ((TextUtils.isEmpty(editproducttype.getText().toString()))) {
                             Toast.makeText(EditDelProductActivity.this, "Please enter Product Type.", Toast.LENGTH_LONG).show();
                         } else if ((TextUtils.isEmpty(editproductquantity.getText().toString()))) {
-                            Toast.makeText(EditDelProductActivity.this, "Please enter Product City.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(EditDelProductActivity.this, "Please enter Product Quantity.", Toast.LENGTH_LONG).show();
                         } else {
                             EditProduct();
                             editproductname.setVisibility(View.GONE);
