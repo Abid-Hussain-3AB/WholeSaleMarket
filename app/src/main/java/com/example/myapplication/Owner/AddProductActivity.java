@@ -15,6 +15,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -27,6 +28,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.myapplication.DataClasses.ProductDataClass;
+import com.example.myapplication.Other.SignInActivity;
 import com.example.myapplication.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -50,7 +52,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     Button btnaddproduct, btncancel, btnChooseimg;
     String str;
     ImageView imgproduct;
-    String imageFileName;
+    String imageFileName = "";
     Uri contentUri;
     String item;
     private DatabaseReference mFirebaseDatabase;
@@ -105,8 +107,24 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         btnaddproduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uploadImageToFirebase(imageFileName, uniqueID, contentUri);
-                finish();
+                if ((TextUtils.isEmpty(etproductname.getText().toString()))) {
+                    Toast.makeText(AddProductActivity.this, "Please enter Product Name .", Toast.LENGTH_LONG).show();
+                }
+                else if ((TextUtils.isEmpty(etproducttype.getText().toString()))){
+                    Toast.makeText(AddProductActivity.this, "Please enter Product Type.", Toast.LENGTH_LONG).show();
+                }
+                else if ((TextUtils.isEmpty(etproductquantity.getText().toString())))
+                {
+                    Toast.makeText(AddProductActivity.this, "Please enter Product Quantity.", Toast.LENGTH_LONG).show();
+                }
+                else if (imageFileName.isEmpty())
+                {
+                    Toast.makeText(AddProductActivity.this, "Please Choose Images.", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    uploadImageToFirebase(imageFileName, uniqueID, contentUri);
+                    finish();
+                }
             }
         });
     }
@@ -206,8 +224,6 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
                         } else if (item.equals("Fertilizers")) {
                             createProducts("Fertilizers", img);
                         }
-
-
                     }
                 });
                 Toast.makeText(AddProductActivity.this, "Upload Success Fully", Toast.LENGTH_SHORT).show();

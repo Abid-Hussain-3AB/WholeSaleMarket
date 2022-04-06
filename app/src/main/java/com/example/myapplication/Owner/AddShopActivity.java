@@ -15,6 +15,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -46,7 +47,7 @@ public class AddShopActivity extends AppCompatActivity {
     Button btnrequest, btnncamera, btngallery;
     ImageView imgshop;
     String str;
-    String imageFileName;
+    String imageFileName = "";
     Uri contentUri;
     StorageReference mStorageReference;
     private DatabaseReference mFirebaseDatabase;
@@ -82,8 +83,24 @@ public class AddShopActivity extends AppCompatActivity {
         btnrequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             createUser();
-             finish();
+                if ((TextUtils.isEmpty(etshopname.getText().toString()))) {
+                    Toast.makeText(AddShopActivity.this, "Please enter Shop Name .", Toast.LENGTH_LONG).show();
+                }
+                else if ((TextUtils.isEmpty(etshoptype.getText().toString()))){
+                    Toast.makeText(AddShopActivity.this, "Please enter Shop Type.", Toast.LENGTH_LONG).show();
+                }
+                else if ((TextUtils.isEmpty(stshopcity.getText().toString())))
+                {
+                    Toast.makeText(AddShopActivity.this, "Please enter Shop City.", Toast.LENGTH_LONG).show();
+                }
+                else if (imageFileName.isEmpty())
+                {
+                    Toast.makeText(AddShopActivity.this, "Please Choose Images.", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    createUser();
+                    finish();
+                }
             }
         });
     }

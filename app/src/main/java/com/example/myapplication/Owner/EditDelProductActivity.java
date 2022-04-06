@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -82,11 +83,19 @@ public class EditDelProductActivity extends AppCompatActivity {
                 alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        EditProduct();
-                        editproductname.setVisibility(View.GONE);
-                        editproducttype.setVisibility(View.GONE);
-                        editproductquantity.setVisibility(View.GONE);
-                        btnconfirm.setVisibility(View.GONE);
+                        if ((TextUtils.isEmpty(editproductname.getText().toString()))) {
+                            Toast.makeText(EditDelProductActivity.this, "Please enter Product Name .", Toast.LENGTH_LONG).show();
+                        } else if ((TextUtils.isEmpty(editproducttype.getText().toString()))) {
+                            Toast.makeText(EditDelProductActivity.this, "Please enter Product Type.", Toast.LENGTH_LONG).show();
+                        } else if ((TextUtils.isEmpty(editproductquantity.getText().toString()))) {
+                            Toast.makeText(EditDelProductActivity.this, "Please enter Product City.", Toast.LENGTH_LONG).show();
+                        } else {
+                            EditProduct();
+                            editproductname.setVisibility(View.GONE);
+                            editproducttype.setVisibility(View.GONE);
+                            editproductquantity.setVisibility(View.GONE);
+                            btnconfirm.setVisibility(View.GONE);
+                        }
                     }
                 });
                 alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -108,9 +117,9 @@ public class EditDelProductActivity extends AppCompatActivity {
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                         for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                             dataSnapshot2.child(PId).getRef().removeValue();
+                            Toast.makeText(EditDelProductActivity.this, "Product Delete Successfully", Toast.LENGTH_SHORT).show();
                         }
                     }
-
                 }
             }
 
@@ -163,7 +172,7 @@ public class EditDelProductActivity extends AppCompatActivity {
                     for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                         if (dataSnapshot2.hasChild(PId)) {
                             dataSnapshot2.child(PId).getRef().setValue(user);
-                            Toast.makeText(EditDelProductActivity.this, "Product Update", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditDelProductActivity.this, "Product Update Successfully", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

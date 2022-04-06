@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -62,9 +63,13 @@ public class SignInActivity extends AppCompatActivity implements AdapterView.OnI
             public void onClick(View view) {
                 String Phone = etSignInName.getText().toString();
                 String UPassword = etSignInPassword.getText().toString();
-                if (Phone.isEmpty() || UPassword.isEmpty()) {
-                    Toast.makeText(SignInActivity.this, "Enter Fields", Toast.LENGTH_SHORT).show();
-                } else {
+                if ((TextUtils.isEmpty(etSignInName.getText().toString()))) {
+                    Toast.makeText(SignInActivity.this, "Please enter User Name.", Toast.LENGTH_LONG).show();
+                }
+                else if ((TextUtils.isEmpty(etSignInPassword.getText().toString()))){
+                    Toast.makeText(SignInActivity.this, "Please enter Password.", Toast.LENGTH_LONG).show();
+                }
+                else {
                          if (item.equals("Owner")) {
 
                              aFirebaseDatabase.child("Owner").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -73,16 +78,16 @@ public class SignInActivity extends AppCompatActivity implements AdapterView.OnI
                                      if (dataSnapshot.hasChild(Phone)) {
                                          final String getpassword = dataSnapshot.child(Phone).child("password").getValue(String.class);
                                          if (getpassword.equals(UPassword)) {
-                                             Toast.makeText(SignInActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+                                             Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
 
                                              Intent intent = new Intent(SignInActivity.this, OwnerActivity.class);
                                              intent.putExtra("SHOP", Phone);
                                              startActivity(intent);
                                          } else {
-                                             Toast.makeText(SignInActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+                                             Toast.makeText(SignInActivity.this, "Wrong User Name or Password or Role", Toast.LENGTH_LONG).show();
                                          }
                                      } else {
-                                         Toast.makeText(SignInActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+                                         Toast.makeText(SignInActivity.this, "Wrong User Name or Password or Role", Toast.LENGTH_LONG).show();
                                      }
                                  }
 
@@ -99,14 +104,14 @@ public class SignInActivity extends AppCompatActivity implements AdapterView.OnI
                                      if (dataSnapshot.hasChild(Phone)) {
                                          final String getpassword = dataSnapshot.child(Phone).child("password").getValue(String.class);
                                          if (getpassword.equals(UPassword)) {
-                                             Toast.makeText(SignInActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+                                             Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                                              Intent intent = new Intent(SignInActivity.this, BuyerActivity.class);
                                              startActivity(intent);
                                          } else {
-                                             Toast.makeText(SignInActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+                                             Toast.makeText(SignInActivity.this, "Wrong User Name or Password or Role", Toast.LENGTH_LONG).show();
                                          }
                                      } else {
-                                         Toast.makeText(SignInActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+                                         Toast.makeText(SignInActivity.this, "Wrong User Name or Password or Role", Toast.LENGTH_LONG).show();
                                      }
                                  }
 
@@ -123,14 +128,14 @@ public class SignInActivity extends AppCompatActivity implements AdapterView.OnI
                                      if (dataSnapshot.hasChild(Phone)) {
                                          final String getpassword = "admin";
                                          if (getpassword.equals(UPassword)) {
-                                             Toast.makeText(SignInActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+                                             Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                                              Intent intent = new Intent(SignInActivity.this, AdminActivity.class);
                                              startActivity(intent);
                                          } else {
-                                             Toast.makeText(SignInActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+                                             Toast.makeText(SignInActivity.this, "Wrong User Name or Password or Role", Toast.LENGTH_LONG).show();
                                          }
                                      } else {
-                                         Toast.makeText(SignInActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+                                         Toast.makeText(SignInActivity.this, "Wrong User Name or Password or Role", Toast.LENGTH_LONG).show();
                                      }
                                  }
 
