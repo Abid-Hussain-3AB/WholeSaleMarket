@@ -8,55 +8,48 @@
     android:background="?android:attr/selectableItemBackground"
     android:orientation="vertical"
     android:padding="10dp">
+
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="15dp"
-        android:elevation="30dp"
-        android:foregroundGravity="center"
-        app:contentPadding="10dp">
+        app:contentPadding="3dp">
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/ImgProduct"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                app:civ_border_width="2dp"
-                app:civ_border_color="#FF000000"/>
-            <LinearLayout
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ImgProducts"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ic_launcher_background"></ImageView>
+
+            <TextView
+                android:id="@+id/tvProductNameB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingEnd="5dp"
-                android:paddingStart="8dp"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/tvProductNameB"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Name"
-                    tools:text="Name" />
+                android:layout_marginTop="2dp"
+                android:text="Name"
+                tools:text="Name" />
 
-                <TextView
-                    android:id="@+id/tvProductTypeB"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Type"
-                    tools:text="Tpye" />
+            <TextView
+                android:id="@+id/tvProductTypeB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Type"
+                tools:text="Tpye" />
 
-                <TextView
-                    android:id="@+id/tvProductQuantityB"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Quantity"
-                    tools:text="Quantity" />
+            <TextView
+                android:id="@+id/tvProductQuantityB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Quantity"
+                tools:text="Quantity" />
 
-            </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

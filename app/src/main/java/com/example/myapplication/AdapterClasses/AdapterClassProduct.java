@@ -40,15 +40,18 @@ public class AdapterClassProduct extends RecyclerView.Adapter<AdapterClassProduc
     @Override
     public void onBindViewHolder(@NonNull AdapterClassProduct.ViewHolder holder, int position) {
         ProductDataClass productDataClass = productDataClasses.get(position);
-        holder.tvPName.setText("Product Name: " + productDataClass.getProductName());
-        holder.tvPType.setText("Product Type: " + productDataClass.getProductType());
+        holder.tvPName.setText(productDataClass.getProductName());
+        holder.tvPType.setText(productDataClass.getProductType());
         Glide.with(context).load(productDataClass.getImage()).into(holder.imgproducts);
-        holder.tvPQuantity.setText("Product Quantity: " + productDataClass.getProductQuantity());
+        holder.tvPQuantity.setText(productDataClass.getProductQuantity());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailActivity.class);
                 intent.putExtra("image",productDataClass.getImage());
+                intent.putExtra("name",productDataClass.getProductName());
+                intent.putExtra("type",productDataClass.getProductType());
+                intent.putExtra("quantity",productDataClass.getProductQuantity());
                 intent.putExtra("ID", productDataClass.getProductId());
                 context.startActivity(intent);
             }
@@ -69,7 +72,7 @@ public class AdapterClassProduct extends RecyclerView.Adapter<AdapterClassProduc
             tvPName = itemView.findViewById(R.id.tvProductNameB);
             tvPType = itemView.findViewById(R.id.tvProductTypeB);
             tvPQuantity = itemView.findViewById(R.id.tvProductQuantityB);
-            imgproducts = itemView.findViewById(R.id.ImgProduct);
+            imgproducts = itemView.findViewById(R.id.ImgProducts);
         }
     }
 }
