@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/teal_700"
-    android:orientation="vertical"
-    tools:context=".Other.SignInActivity">
+    android:orientation="vertical">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/filledTextField"
@@ -21,7 +20,7 @@
         android:hint="Phone Number">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etSignInPhone"
+            android:id="@+id/etSignInPhone1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="0"
@@ -44,7 +43,7 @@
         android:hint="Password">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etSignInPassword"
+            android:id="@+id/etSignInPassword1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="0"
@@ -56,7 +55,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinner1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textview"

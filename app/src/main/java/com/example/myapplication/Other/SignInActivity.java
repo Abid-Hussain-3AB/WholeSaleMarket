@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Admin.AdminActivity;
@@ -32,10 +33,11 @@ public class SignInActivity extends AppCompatActivity implements AdapterView.OnI
     EditText etSignInName, etSignInPassword;
     private DatabaseReference aFirebaseDatabase;
     String item;
+    TextView tv6;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signin);
+        setContentView(R.layout.activity_login_new);
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(SignInActivity.this);
         List Choice = new ArrayList();
@@ -45,13 +47,13 @@ public class SignInActivity extends AppCompatActivity implements AdapterView.OnI
         ArrayAdapter dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Choice);
         dataAdapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         spinner.setAdapter(dataAdapter);
-        btnsignup = findViewById(R.id.btnSignUp);
-        SignIn = findViewById(R.id.btnSignIn);
+        //btnsignup = findViewById(R.id.btnSignUp);
+        SignIn = findViewById(R.id.button4);
         etSignInName = findViewById(R.id.etSignInPhone);
         etSignInPassword = findViewById(R.id.etSignInPassword);
-
+        tv6 = findViewById(R.id.textView6);
         aFirebaseDatabase = FirebaseDatabase.getInstance().getReferenceFromUrl("https://login-b93ab-default-rtdb.firebaseio.com/");
-        btnsignup.setOnClickListener(new View.OnClickListener() {
+        tv6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
