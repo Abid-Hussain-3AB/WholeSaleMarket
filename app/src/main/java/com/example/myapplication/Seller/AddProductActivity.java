@@ -1,4 +1,4 @@
-package com.example.myapplication.Owner;
+package com.example.myapplication.Seller;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,7 +28,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.myapplication.DataClasses.ProductDataClass;
-import com.example.myapplication.Other.SignInActivity;
 import com.example.myapplication.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

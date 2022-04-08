@@ -1,4 +1,4 @@
-package com.example.myapplication.Owner;
+package com.example.myapplication.Seller;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class OwnerActivity extends AppCompatActivity {
+public class SellerActivity extends AppCompatActivity {
     Button addShop, addproducr, btnviewPD;
     TextView tv;
     private DatabaseReference mFirebaseDatabase;
@@ -31,7 +31,8 @@ public class OwnerActivity extends AppCompatActivity {
         btnviewPD = findViewById(R.id.btnviewProducts);
         Intent intent = getIntent();
         String str = intent.getStringExtra("SHOP");
-        tv.setText(str);
+        String Sname = intent.getStringExtra("NAME");
+        tv.setText(Sname);
         addproducr.setVisibility(View.GONE);
         btnviewPD.setVisibility(View.GONE);
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("Shops");
@@ -61,7 +62,7 @@ public class OwnerActivity extends AppCompatActivity {
         btnviewPD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(OwnerActivity.this, ShowProductsActivity.class);
+                Intent intent = new Intent(SellerActivity.this, ShowProductsActivity.class);
                 intent.putExtra("shop", str);
                 startActivity(intent);
             }
@@ -69,7 +70,7 @@ public class OwnerActivity extends AppCompatActivity {
         addproducr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(OwnerActivity.this, AddProductActivity.class);
+                Intent intent = new Intent(SellerActivity.this, AddProductActivity.class);
                 intent.putExtra("shop", str);
                 startActivity(intent);
             }
@@ -77,7 +78,7 @@ public class OwnerActivity extends AppCompatActivity {
         addShop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(OwnerActivity.this, AddShopActivity.class);
+                Intent intent = new Intent(SellerActivity.this, AddShopActivity.class);
                 intent.putExtra("shop", str);
                 startActivity(intent);
             }

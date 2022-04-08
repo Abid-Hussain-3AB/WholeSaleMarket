@@ -14,9 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.DataClasses.ProductDataClass;
-import com.example.myapplication.Owner.EditDelProductActivity;
 import com.example.myapplication.R;
-import com.example.myapplication.User.DetailActivity;
+import com.example.myapplication.Buyer.DetailActivity;
 
 import java.util.List;
 

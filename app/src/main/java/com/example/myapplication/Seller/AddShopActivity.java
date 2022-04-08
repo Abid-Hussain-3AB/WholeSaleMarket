@@ -1,4 +1,4 @@
-package com.example.myapplication.Owner;
+package com.example.myapplication.Seller;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -63,6 +63,7 @@ public class AddShopActivity extends AppCompatActivity {
         btnncamera = findViewById(R.id.btnCamera);
         btngallery = findViewById(R.id.btnGallery);
         imgshop = findViewById(R.id.imgShop);
+        imgshop.setVisibility(View.GONE);
         Intent intent = getIntent();
         str = intent.getStringExtra("shop");
         mStorageReference = FirebaseStorage.getInstance().getReference();
@@ -78,6 +79,7 @@ public class AddShopActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(gallery, GALLERY_REQUEST_CODE);
+                imgshop.setVisibility(View.VISIBLE);
             }
         });
         btnrequest.setOnClickListener(new View.OnClickListener() {

@@ -1,9 +1,14 @@
 package com.example.myapplication.Other;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -16,15 +21,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Admin.AdminActivity;
-import com.example.myapplication.Owner.OwnerActivity;
+import com.example.myapplication.Seller.SellerActivity;
 import com.example.myapplication.R;
-import com.example.myapplication.User.BuyerActivity;
+import com.example.myapplication.Buyer.BuyerActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +50,7 @@ public class SignInActivity extends AppCompatActivity implements AdapterView.OnI
         spinner.setOnItemSelectedListener(SignInActivity.this);
         List Choice = new ArrayList();
         Choice.add("Buyer");
-        Choice.add("Owner");
+        Choice.add("Seller");
         Choice.add("Admin");
         ArrayAdapter dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Choice);
         dataAdapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
@@ -61,93 +69,100 @@ public class SignInActivity extends AppCompatActivity implements AdapterView.OnI
             }
         });
         SignIn.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
-                String Phone = etSignInName.getText().toString();
+                if (IsInterConnected())
+                {
+                    String Phone = etSignInName.getText().toString();
                 String UPassword = etSignInPassword.getText().toString();
                 if ((TextUtils.isEmpty(etSignInName.getText().toString()))) {
                     Toast.makeText(SignInActivity.this, "Please enter User Name.", Toast.LENGTH_LONG).show();
-                }
-                else if ((TextUtils.isEmpty(etSignInPassword.getText().toString()))){
+                } else if ((TextUtils.isEmpty(etSignInPassword.getText().toString()))) {
                     Toast.makeText(SignInActivity.this, "Please enter Password.", Toast.LENGTH_LONG).show();
+                } else {
+                    if (item.equals("Seller")) {
+
+                        aFirebaseDatabase.child("Owner").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.hasChild(Phone)) {
+                                    final String getpassword = dataSnapshot.child(Phone).child("password").getValue(String.class);
+                                    String name = dataSnapshot.child(Phone).child("username").getValue(String.class);
+                                    if (getpassword.equals(UPassword)) {
+                                        Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(SignInActivity.this, SellerActivity.class);
+                                        intent.putExtra("SHOP", Phone);
+                                        intent.putExtra("NAME", name);
+                                        startActivity(intent);
+                                    } else {
+                                        Toast.makeText(SignInActivity.this, "Wrong User Name or Password or Role", Toast.LENGTH_LONG).show();
+                                    }
+                                } else {
+                                    Toast.makeText(SignInActivity.this, "Wrong User Name or Password or Role", Toast.LENGTH_LONG).show();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    } else if (item.equals("Buyer")) {
+                        aFirebaseDatabase.child("User").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.hasChild(Phone)) {
+                                    final String getpassword = dataSnapshot.child(Phone).child("password").getValue(String.class);
+                                    if (getpassword.equals(UPassword)) {
+                                        Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(SignInActivity.this, BuyerActivity.class);
+                                        startActivity(intent);
+                                    } else {
+                                        Toast.makeText(SignInActivity.this, "Wrong User Name or Password or Role", Toast.LENGTH_LONG).show();
+                                    }
+                                } else {
+                                    Toast.makeText(SignInActivity.this, "Wrong User Name or Password or Role", Toast.LENGTH_LONG).show();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    } else if (item.equals("Admin")) {
+                        aFirebaseDatabase.child("Admin").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.hasChild(Phone)) {
+                                    final String getpassword = "admin";
+                                    if (getpassword.equals(UPassword)) {
+                                        Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(SignInActivity.this, AdminActivity.class);
+                                        startActivity(intent);
+                                    } else {
+                                        Toast.makeText(SignInActivity.this, "Wrong User Name or Password or Role", Toast.LENGTH_LONG).show();
+                                    }
+                                } else {
+                                    Toast.makeText(SignInActivity.this, "Wrong User Name or Password or Role", Toast.LENGTH_LONG).show();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
                 }
+
+            }
                 else {
-                         if (item.equals("Owner")) {
-
-                             aFirebaseDatabase.child("Owner").addListenerForSingleValueEvent(new ValueEventListener() {
-                                 @Override
-                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                     if (dataSnapshot.hasChild(Phone)) {
-                                         final String getpassword = dataSnapshot.child(Phone).child("password").getValue(String.class);
-                                         if (getpassword.equals(UPassword)) {
-                                             Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-
-                                             Intent intent = new Intent(SignInActivity.this, OwnerActivity.class);
-                                             intent.putExtra("SHOP", Phone);
-                                             startActivity(intent);
-                                         } else {
-                                             Toast.makeText(SignInActivity.this, "Wrong User Name or Password or Role", Toast.LENGTH_LONG).show();
-                                         }
-                                     } else {
-                                         Toast.makeText(SignInActivity.this, "Wrong User Name or Password or Role", Toast.LENGTH_LONG).show();
-                                     }
-                                 }
-
-                                 @Override
-                                 public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                 }
-                             });
-                         }
-                    else if(item.equals("Buyer")) {
-                             aFirebaseDatabase.child("User").addListenerForSingleValueEvent(new ValueEventListener() {
-                                 @Override
-                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                     if (dataSnapshot.hasChild(Phone)) {
-                                         final String getpassword = dataSnapshot.child(Phone).child("password").getValue(String.class);
-                                         if (getpassword.equals(UPassword)) {
-                                             Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                                             Intent intent = new Intent(SignInActivity.this, BuyerActivity.class);
-                                             startActivity(intent);
-                                         } else {
-                                             Toast.makeText(SignInActivity.this, "Wrong User Name or Password or Role", Toast.LENGTH_LONG).show();
-                                         }
-                                     } else {
-                                         Toast.makeText(SignInActivity.this, "Wrong User Name or Password or Role", Toast.LENGTH_LONG).show();
-                                     }
-                                 }
-
-                                 @Override
-                                 public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                 }
-                             });
-                         }
-                         else if(item.equals("Admin")) {
-                             aFirebaseDatabase.child("Admin").addListenerForSingleValueEvent(new ValueEventListener() {
-                                 @Override
-                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                     if (dataSnapshot.hasChild(Phone)) {
-                                         final String getpassword = "admin";
-                                         if (getpassword.equals(UPassword)) {
-                                             Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                                             Intent intent = new Intent(SignInActivity.this, AdminActivity.class);
-                                             startActivity(intent);
-                                         } else {
-                                             Toast.makeText(SignInActivity.this, "Wrong User Name or Password or Role", Toast.LENGTH_LONG).show();
-                                         }
-                                     } else {
-                                         Toast.makeText(SignInActivity.this, "Wrong User Name or Password or Role", Toast.LENGTH_LONG).show();
-                                     }
-                                 }
-
-                                 @Override
-                                 public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                 }
-                             });
-                         }
+                    Toast.makeText(SignInActivity.this, "No Internet Connection", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignInActivity.this, "Please Try Again", Toast.LENGTH_LONG).show();
                 }
+
             }
 
         });
@@ -162,5 +177,25 @@ public class SignInActivity extends AppCompatActivity implements AdapterView.OnI
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    boolean IsInterConnected()
+    {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo!=null)
+        {
+            if (networkInfo.isConnected())
+                 return true;
+            else
+                return false;
+        }
+        else {
+            return false;
+        }
+    }
+    public boolean isConnected() throws InterruptedException, IOException {
+        String command = "ping -c 1 google.com";
+        return Runtime.getRuntime().exec(command).waitFor() == 0;
     }
 }

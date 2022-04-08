@@ -1,4 +1,4 @@
-package com.example.myapplication.User;
+package com.example.myapplication.Buyer;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;

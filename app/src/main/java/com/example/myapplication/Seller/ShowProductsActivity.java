@@ -1,4 +1,4 @@
-package com.example.myapplication.Owner;
+package com.example.myapplication.Seller;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

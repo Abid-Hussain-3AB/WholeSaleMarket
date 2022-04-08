@@ -1,4 +1,4 @@
-package com.example.myapplication.Owner;
+package com.example.myapplication.Seller;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -11,7 +11,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.DataClasses.ProductDataClass;

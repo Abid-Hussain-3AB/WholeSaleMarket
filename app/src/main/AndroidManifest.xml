@@ -21,32 +21,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".User.DetailActivity"
+            android:name=".Buyer.DetailActivity"
             android:exported="false" />
         <activity
-            android:name=".Owner.EditDelProductActivity"
+            android:name=".Seller.EditDelProductActivity"
             android:exported="false" />
         <activity
             android:name=".Admin.ShopApprovalActivity"
             android:exported="false" />
         <activity
-            android:name=".Owner.ShowProductsActivity"
+            android:name=".Seller.ShowProductsActivity"
             android:exported="false" />
         <activity
-            android:name=".Owner.AddProductActivity"
+            android:name=".Seller.AddProductActivity"
             android:exported="false" />
         <activity
-            android:name=".Owner.AddShopActivity"
+            android:name=".Seller.AddShopActivity"
             android:exported="false" />
         <activity
             android:name=".Other.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".User.BuyerActivity"
+            android:name=".Buyer.BuyerActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
-            android:name=".Owner.OwnerActivity"
+            android:name=".Seller.SellerActivity"
             android:exported="false" />
         <activity
             android:name=".Admin.AdminActivity"
