@@ -84,6 +84,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         btncancel = findViewById(R.id.btnCancel);
         btnChooseimg = findViewById(R.id.btnChooseIMG);
         imgproduct = findViewById(R.id.imgproduct);
+        imgproduct.setVisibility(View.GONE);
         Intent intent = getIntent();
         str = intent.getStringExtra("shop");
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("Products");
@@ -94,6 +95,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
                 askCameraPermission();
                 Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(gallery, GALLERY_REQUEST_CODE);
+                imgproduct.setVisibility(View.VISIBLE);
             }
         });
         btncancel.setOnClickListener(new View.OnClickListener() {

@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_design"
+    android:padding="8dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
     xmlns:android="http://schemas.android.com/apk/res/android"
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.appcompat.widget.LinearLayoutCompat
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -15,23 +15,25 @@
 
     <Button
         android:id="@+id/btnDel"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:text="Delete" />
+        android:text="Delete Product"
+        android:background="@drawable/textview_design"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <Button
         android:id="@+id/btnEdit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:text="Edit Product" />
+        android:background="@drawable/textview_design"
+        android:text="Edit Product"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -51,7 +53,7 @@
             android:maxLines="1"
             android:maxLength="11"
             android:phoneNumber="false"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             tools:ignore="Deprecated" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,7 +74,7 @@
             android:maxLines="1"
             android:maxLength="11"
             android:phoneNumber="false"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             tools:ignore="Deprecated" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,19 +95,19 @@
             android:maxLines="1"
             android:maxLength="11"
             android:phoneNumber="false"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             tools:ignore="Deprecated" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnConfirm"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:text="Confirm" />
+        android:text="Confirm"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
 </ScrollView>

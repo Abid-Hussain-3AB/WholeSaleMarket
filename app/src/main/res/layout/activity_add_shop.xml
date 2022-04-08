@@ -42,7 +42,7 @@
             android:maxLines="1"
             android:maxLength="11"
             android:phoneNumber="false"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             tools:ignore="Deprecated" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,7 +64,7 @@
             android:maxLines="1"
             android:maxLength="11"
             android:phoneNumber="false"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             tools:ignore="Deprecated" />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
@@ -84,7 +84,7 @@
             android:maxLines="1"
             android:maxLength="11"
             android:phoneNumber="false"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             tools:ignore="Deprecated" />
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -37,7 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SignInActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    Button btnsignup, SignIn;
+    Button SignIn;
     EditText etSignInName, etSignInPassword;
     private DatabaseReference aFirebaseDatabase;
     String item;
@@ -55,7 +55,6 @@ public class SignInActivity extends AppCompatActivity implements AdapterView.OnI
         ArrayAdapter dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Choice);
         dataAdapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         spinner.setAdapter(dataAdapter);
-        //btnsignup = findViewById(R.id.btnSignUp);
         SignIn = findViewById(R.id.button4);
         etSignInName = findViewById(R.id.etSignInPhone);
         etSignInPassword = findViewById(R.id.etSignInPassword);

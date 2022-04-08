@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_design"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    xmlns:android="http://schemas.android.com/apk/res/android"
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:padding="8dp"
         tools:context=".Seller.AddProductActivity">
 
 
@@ -18,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="65dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="50dp"
             android:background="@drawable/textview_design"
@@ -40,7 +41,7 @@
             android:dropDownWidth="wrap_content"
             android:minWidth="60dp"
             android:minHeight="50dp"
-            android:popupBackground="@android:drawable/editbox_dropdown_light_frame" />
+            android:popupBackground="?android:attr/galleryItemBackground" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/filledTextField"
@@ -59,7 +60,7 @@
                 android:maxLength="11"
                 android:maxLines="1"
                 android:phoneNumber="false"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 tools:ignore="Deprecated" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,7 +82,7 @@
                 android:maxLength="11"
                 android:maxLines="1"
                 android:phoneNumber="false"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 tools:ignore="Deprecated" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -102,42 +103,41 @@
                 android:maxLength="11"
                 android:maxLines="1"
                 android:phoneNumber="false"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 tools:ignore="Deprecated" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btnChooseIMG"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="15dp"
-            android:orientation="horizontal">
+            android:layout_marginEnd="32dp"
+            android:layout_weight="1"
+            android:background="@drawable/textview_design"
+            android:text="Choose Image"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-            <Button
-                android:id="@+id/btnChooseIMG"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_weight="1"
-                android:text="Choose Image"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-            <Button
-                android:id="@+id/btnAddProduct"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="80dp"
-                android:layout_weight="2"
-                android:text="Add Product"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-
-        </LinearLayout>
+        <Button
+            android:id="@+id/btnAddProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/textview_design"
+            android:layout_weight="2"
+            android:text="Add Product"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <Button
             android:id="@+id/btnCancel"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="32dp"
             android:text="Cancel"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 

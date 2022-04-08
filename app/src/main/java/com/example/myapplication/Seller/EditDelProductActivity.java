@@ -71,6 +71,7 @@ public class EditDelProductActivity extends AppCompatActivity {
                 editproducttype.setVisibility(View.VISIBLE);
                 editproductquantity.setVisibility(View.VISIBLE);
                 getData();
+                btndel.setVisibility(View.GONE);
                 btnconfirm.setVisibility(View.VISIBLE);
             }
         });

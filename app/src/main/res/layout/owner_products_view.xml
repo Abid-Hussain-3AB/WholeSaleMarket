@@ -5,15 +5,16 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:background="?android:attr/selectableItemBackground"
+    android:background="@drawable/background_design1"
     android:orientation="vertical"
     android:padding="10dp">
 <androidx.cardview.widget.CardView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="15dp"
     android:elevation="30dp"
+    android:backgroundTint="@color/white"
     android:foregroundGravity="center"
+    app:cardCornerRadius="990dp"
     app:contentPadding="10dp">
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,6 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:textColor="@color/black"
                 android:text="Name"
                 tools:text="Name" />
 
@@ -44,6 +46,7 @@
                 android:id="@+id/tvProductType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_marginTop="10dp"
                 android:text="Type"
                 tools:text="Tpye" />
@@ -52,6 +55,7 @@
                 android:id="@+id/tvProductQuantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_marginTop="10dp"
                 android:text="Quantity"
                 tools:text="Quantity" />
