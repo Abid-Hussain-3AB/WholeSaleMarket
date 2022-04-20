@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,21 +19,21 @@ import com.google.firebase.database.ValueEventListener;
 
 public class SellerActivity extends AppCompatActivity {
     Button addShop, addproducr, btnviewPD;
-    TextView tv;
     private DatabaseReference mFirebaseDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner);
-        tv = findViewById(R.id.owner);
-        addShop = findViewById(R.id.btnAddShop);
-        addproducr = findViewById(R.id.btnADDP);
-        btnviewPD = findViewById(R.id.btnviewProducts);
         Intent intent = getIntent();
         String str = intent.getStringExtra("SHOP");
         String Sname = intent.getStringExtra("NAME");
-        tv.setText(Sname);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle(Sname);
+        addShop = findViewById(R.id.btnAddShop);
+        addproducr = findViewById(R.id.btnADDP);
+        btnviewPD = findViewById(R.id.btnviewProducts);
         addproducr.setVisibility(View.GONE);
         btnviewPD.setVisibility(View.GONE);
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("Shops");
@@ -85,5 +86,14 @@ public class SellerActivity extends AppCompatActivity {
         });
 
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

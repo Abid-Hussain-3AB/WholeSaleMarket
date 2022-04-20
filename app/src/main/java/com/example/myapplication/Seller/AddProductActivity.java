@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
@@ -65,6 +66,9 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("Add Product");
         uniqueID = UUID.randomUUID().toString();
         Spinner spinner = (Spinner) findViewById(R.id.spinner1);
         spinner.setOnItemSelectedListener(this);
@@ -129,7 +133,15 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
             }
         });
     }
-
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void createProducts(String productTpe, String uri1) {
         String name = etproductname.getText().toString();
         String type = etproducttype.getText().toString();

@@ -15,9 +15,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_splash"
+        android:icon="@drawable/icona"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_splash"
+        android:roundIcon="@drawable/icona"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
@@ -25,21 +25,26 @@
             android:exported="false" />
         <activity
             android:name=".Seller.EditDelProductActivity"
+            android:theme="@style/DefaultTheme"
             android:exported="false" />
         <activity
             android:name=".Admin.ShopApprovalActivity"
             android:exported="false" />
         <activity
             android:name=".Seller.ShowProductsActivity"
+            android:theme="@style/DefaultTheme"
             android:exported="false" />
         <activity
             android:name=".Seller.AddProductActivity"
+            android:theme="@style/DefaultTheme"
             android:exported="false" />
         <activity
             android:name=".Seller.AddShopActivity"
+            android:theme="@style/DefaultTheme"
             android:exported="false" />
         <activity
             android:name=".Other.SignUpActivity"
+            android:theme="@style/DefaultTheme"
             android:exported="false" />
         <activity
             android:name=".Buyer.BuyerActivity"
@@ -47,6 +52,7 @@
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".Seller.SellerActivity"
+            android:theme="@style/DefaultTheme"
             android:exported="false" />
         <activity
             android:name=".Admin.AdminActivity"

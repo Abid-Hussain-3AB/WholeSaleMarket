@@ -7,16 +7,6 @@
     android:orientation="vertical"
     tools:context=".Seller.ShowProductsActivity">
 
-    <TextView
-        android:id="@+id/tvProducts"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:text="Shop Products"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rc_owner_products"
         android:layout_width="match_parent"

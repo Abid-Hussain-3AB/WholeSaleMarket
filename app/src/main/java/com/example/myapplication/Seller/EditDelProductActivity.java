@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,12 +25,15 @@ import com.google.firebase.database.ValueEventListener;
 public class EditDelProductActivity extends AppCompatActivity {
     EditText editproductname, editproducttype, editproductquantity;
     private DatabaseReference mFirebaseDatabase;
-    Button btndel,btnedit,btnconfirm;
+    Button btndel,btnedit,btnconfirm,btncancel;
     String PId,image;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_del_product);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("Delete, Edit Product");
         Intent intent = getIntent();
         editproductname = findViewById(R.id.EditProductName);
         editproductname.setVisibility(View.GONE);
@@ -40,7 +44,9 @@ public class EditDelProductActivity extends AppCompatActivity {
         btndel = findViewById(R.id.btnDel);
         btnedit = findViewById(R.id.btnEdit);
         btnconfirm = findViewById(R.id.btnConfirm);
+        btncancel = findViewById(R.id.btnCancel);
         btnconfirm.setVisibility(View.GONE);
+        btncancel.setVisibility(View.GONE);
         PId = intent.getStringExtra("ID");
         image = intent.getStringExtra("image");
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("Products");
@@ -73,6 +79,13 @@ public class EditDelProductActivity extends AppCompatActivity {
                 getData();
                 btndel.setVisibility(View.GONE);
                 btnconfirm.setVisibility(View.VISIBLE);
+                btncancel.setVisibility(View.VISIBLE);
+            }
+        });
+        btncancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
         btnconfirm.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +97,7 @@ public class EditDelProductActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if ((TextUtils.isEmpty(editproductname.getText().toString()))) {
-                            Toast.makeText(EditDelProductActivity.this, "Please enter Product Name .", Toast.LENGTH_LONG).show();
+                            Toast.makeText(EditDelProductActivity.this, "Please enter Product Name.", Toast.LENGTH_LONG).show();
                         } else if ((TextUtils.isEmpty(editproducttype.getText().toString()))) {
                             Toast.makeText(EditDelProductActivity.this, "Please enter Product Type.", Toast.LENGTH_LONG).show();
                         } else if ((TextUtils.isEmpty(editproductquantity.getText().toString()))) {
@@ -108,6 +121,15 @@ public class EditDelProductActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     public void DellProduct()
     {
         mFirebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -117,7 +139,7 @@ public class EditDelProductActivity extends AppCompatActivity {
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                         for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                             dataSnapshot2.child(PId).getRef().removeValue();
-                            Toast.makeText(EditDelProductActivity.this, "Product Delete Successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditDelProductActivity.this, "Product Delete Successfully.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -172,14 +194,14 @@ public class EditDelProductActivity extends AppCompatActivity {
                     for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                         if (dataSnapshot2.hasChild(PId)) {
                             dataSnapshot2.child(PId).getRef().setValue(user);
-                            Toast.makeText(EditDelProductActivity.this, "Product Update Successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditDelProductActivity.this, "Product Update Successfully.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(EditDelProductActivity.this, "Fail to Update Data " + databaseError, Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditDelProductActivity.this, "Fail to Update Data." + databaseError, Toast.LENGTH_SHORT).show();
             }
         });
     }

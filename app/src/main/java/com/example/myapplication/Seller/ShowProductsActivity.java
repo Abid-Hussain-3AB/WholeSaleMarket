@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.example.myapplication.AdapterClasses.AdapterClassOwner;
 import com.example.myapplication.DataClasses.ProductDataClass;
@@ -30,6 +31,9 @@ public class ShowProductsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("Shop Products");
         Intent intent = getIntent();
         ShopId = intent.getStringExtra("shop");
         setContentView(R.layout.activity_show_products);
@@ -63,5 +67,14 @@ public class ShowProductsActivity extends AppCompatActivity {
 
             }
         });
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
