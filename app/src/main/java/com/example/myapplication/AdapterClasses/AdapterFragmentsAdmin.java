@@ -11,13 +11,14 @@ import com.example.myapplication.Buyer.Fragments.AllProductFrag;
 import com.example.myapplication.Buyer.Fragments.ApparelFrag;
 import com.example.myapplication.Buyer.Fragments.JewelryFrag;
 
-public class AdapterFragments extends FragmentStatePagerAdapter {
+public class AdapterFragmentsAdmin extends FragmentStatePagerAdapter {
     private int tabCount;
-    public AdapterFragments(@NonNull FragmentManager fm, int tabCount) {
+    public AdapterFragmentsAdmin(@NonNull FragmentManager fm, int tabCount) {
         super(fm);
         this.tabCount = tabCount;
 
     }
+
 
     @NonNull
     @Override
@@ -26,15 +27,9 @@ public class AdapterFragments extends FragmentStatePagerAdapter {
         switch (position)
         {
             case 0:
-                return new AllProductFrag();
-            case 1:
-                return new ApparelFrag();
-            case 2:
-                return new JewelryFrag();
-            case 3:
-                return new RequestedShops();
-            case 4:
                 return new ApprovedShops();
+            case 1:
+                return new RequestedShops();
             default:
                 return null;
         }

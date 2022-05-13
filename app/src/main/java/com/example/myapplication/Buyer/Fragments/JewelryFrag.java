@@ -1,4 +1,4 @@
-package com.example.myapplication.Fragments;
+package com.example.myapplication.Buyer.Fragments;
 
 import android.os.Bundle;
 
@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.myapplication.AdapterClasses.AdapterClassOwner;
 import com.example.myapplication.AdapterClasses.AdapterClassProduct;
 import com.example.myapplication.DataClasses.ProductDataClass;
 import com.example.myapplication.R;
@@ -24,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ApparelFrag extends Fragment {
+public class JewelryFrag extends Fragment {
 
     private DatabaseReference mFirebaseDatabase;
     RecyclerView recyclerView;
@@ -32,17 +31,16 @@ public class ApparelFrag extends Fragment {
     private List<ProductDataClass> productDataClassesList;
     List<String> arrayLists;
     View v;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.fragment_apparel, container, false);
-        recyclerView = v.findViewById(R.id.rc_apparel);
+        v =  inflater.inflate(R.layout.fragment_jewelry, container, false);
+        recyclerView = v.findViewById(R.id.rc_jewelry);
         recyclerView.setHasFixedSize(true);
         arrayLists = new ArrayList<String>();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
         productDataClassesList = new ArrayList<>();
-       // mFirebaseDatabase = FirebaseDatabase.getInstance().getReferenceFromUrl("https://login-b93ab-default-rtdb.firebaseio.com/");
+        // mFirebaseDatabase = FirebaseDatabase.getInstance().getReferenceFromUrl("https://login-b93ab-default-rtdb.firebaseio.com/");
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("Products");
         getData();
         return v;
@@ -53,8 +51,8 @@ public class ApparelFrag extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    if (ds.hasChild("Apparel")) {
-                        for (DataSnapshot dataSnapshot1 : ds.child("Apparel").getChildren()) {
+                    if (ds.hasChild("Jewelry")) {
+                        for (DataSnapshot dataSnapshot1 : ds.child("Jewelry").getChildren()) {
                             ProductDataClass sdc = dataSnapshot1.getValue(ProductDataClass.class);
                             productDataClassesList.add(sdc);
                         }

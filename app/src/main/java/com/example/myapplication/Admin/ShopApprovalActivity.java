@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.DataClasses.ShopDataClass;
 import com.example.myapplication.R;
+import com.example.myapplication.Seller.EditDelProductActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,7 +27,8 @@ public class ShopApprovalActivity extends AppCompatActivity {
     TextView tvstatus;
     Button Confirm, Cancel;
     private DatabaseReference mFirebaseDatabase;
-    String name,type,city,id;
+    private DatabaseReference mFirebaseDatabaseA;
+    String name,type,city,id,image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +46,13 @@ public class ShopApprovalActivity extends AppCompatActivity {
         type = intent.getStringExtra("Type");
         city = intent.getStringExtra("City");
         id = intent.getStringExtra("Id");
+        image = intent.getStringExtra("Image");
         tvName.setText(name);
         tvType.setText(type);
         tvCity.setText(city);
         tvId.setText(id);
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("Shops");
+        mFirebaseDatabaseA = FirebaseDatabase.getInstance().getReferenceFromUrl("https://login-b93ab-default-rtdb.firebaseio.com/");
         mFirebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -94,11 +98,33 @@ public class ShopApprovalActivity extends AppCompatActivity {
                 }
                 else {
 
-                    ShopDataClass user = new ShopDataClass(name, type, city,id);
+                    ShopDataClass user = new ShopDataClass(name, type, city,id,image);
                     mFirebaseDatabase.child(id).setValue(user);
                     Toast.makeText(ShopApprovalActivity.this, "Shop Register Successfully", Toast.LENGTH_SHORT).show();
+                    Dell();
                 }
 
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+    public void Dell()
+    {
+        mFirebaseDatabaseA.child("Admin").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
+                    {
+                        dataSnapshot1.child(id).getRef().removeValue();
+                    }
+                }
 
             }
 

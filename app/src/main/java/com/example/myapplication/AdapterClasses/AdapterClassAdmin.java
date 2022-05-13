@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.DataClasses.ShopDataClass;
 import com.example.myapplication.R;
 import com.example.myapplication.Admin.ShopApprovalActivity;
@@ -43,6 +44,7 @@ public class AdapterClassAdmin extends RecyclerView.Adapter<AdapterClassAdmin.Vi
         holder.tvType.setText("Shop Type: "+shopDataClass.getShopType());
         holder.tvCity.setText("Shop City: "+shopDataClass.getShopCity());
         holder.ID.setText("Shop Id: "+shopDataClass.getShopId());
+        Glide.with(context).load(shopDataClass.getShopImage()).into(holder.shopImage);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,6 +53,7 @@ public class AdapterClassAdmin extends RecyclerView.Adapter<AdapterClassAdmin.Vi
                 intent.putExtra("Type",shopDataClass.getShopType());
                 intent.putExtra("City",shopDataClass.getShopCity());
                 intent.putExtra("Id",shopDataClass.getShopId());
+                intent.putExtra("Image",shopDataClass.getShopImage());
                 context.startActivity(intent);
             }
         });
@@ -67,7 +70,7 @@ public class AdapterClassAdmin extends RecyclerView.Adapter<AdapterClassAdmin.Vi
         ImageView shopImage;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-           // shopImage = itemView.findViewById(R.id.ImgShop);
+            shopImage = itemView.findViewById(R.id.ImgShop);
             tvName = itemView.findViewById(R.id.tvShopName);
             tvType = itemView.findViewById(R.id.tvShopType);
             tvCity = itemView.findViewById(R.id.tvShopCity);

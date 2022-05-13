@@ -5,12 +5,22 @@ public class ShopDataClass {
     public String shopType;
     public String shopCity;
     public String shopId;
+    public String shopImage;
 
-    public ShopDataClass(String shopName, String shopType, String shopCity, String shopId) {
+    public ShopDataClass(String shopName, String shopType, String shopCity, String shopId, String shopImage) {
         this.shopName = shopName;
         this.shopType = shopType;
         this.shopCity = shopCity;
         this.shopId = shopId;
+        this.shopImage = shopImage;
+    }
+
+    public String getShopImage() {
+        return shopImage;
+    }
+
+    public void setShopImage(String shopImage) {
+        this.shopImage = shopImage;
     }
 
     public ShopDataClass() {

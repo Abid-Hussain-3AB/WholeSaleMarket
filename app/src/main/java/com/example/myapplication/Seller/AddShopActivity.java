@@ -104,7 +104,7 @@ public class AddShopActivity extends AppCompatActivity {
                     Toast.makeText(AddShopActivity.this, "Please Choose Images.", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    createUser();
+                    uploadImageToFirebase(imageFileName, contentUri);
                     finish();
                 }
             }
@@ -166,7 +166,7 @@ public class AddShopActivity extends AppCompatActivity {
         MimeTypeMap mime  = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(c.getType(contentUri));
     }
-    private void createUser() {
+    private void createUser(String uri) {
         String Name = etshopname.getText().toString();
         String Type = etshoptype.getText().toString();
         String City = stshopcity.getText().toString();
@@ -180,17 +180,15 @@ public class AddShopActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    ShopDataClass user = new ShopDataClass(Name, Type, City,str);
+                    ShopDataClass user = new ShopDataClass(Name, Type, City,str,uri);
                     mFirebaseDatabase.child("admin1").child(str).setValue(user);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-        uploadImageToFirebase(imageFileName, contentUri);
     }
     public void uploadImageToFirebase(String fileName, Uri uri)
     {
@@ -202,6 +200,8 @@ public class AddShopActivity extends AppCompatActivity {
                 image.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
+                        String img = uri.toString();
+                        createUser(img);
                     }
                 });
                 Toast.makeText(AddShopActivity.this, "Upload Success Fully", Toast.LENGTH_SHORT).show();
