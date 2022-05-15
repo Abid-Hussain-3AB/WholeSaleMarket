@@ -1,5 +1,6 @@
 package com.example.myapplication.Admin.Fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -27,7 +28,6 @@ import java.util.List;
 
 public class RequestedShops extends Fragment {
     private DatabaseReference mFirebaseDatabase;
-    private DatabaseReference mFirebaseDatabaseA;
     RecyclerView recyclerView;
     AdapterClassAdmin adapterClassAdmin;
     private List<ShopDataClass> shopDataClassList1;
@@ -43,6 +43,7 @@ public class RequestedShops extends Fragment {
         shopDataClassList1 = new ArrayList<>();
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReferenceFromUrl("https://login-b93ab-default-rtdb.firebaseio.com/");
         mFirebaseDatabase.child("Admin").child("admin1").addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists())
@@ -54,6 +55,7 @@ public class RequestedShops extends Fragment {
                     }
                     adapterClassAdmin = new AdapterClassAdmin(shopDataClassList1, getContext());
                     recyclerView.setAdapter(adapterClassAdmin);
+                    adapterClassAdmin.notifyDataSetChanged();
                 }
             }
 

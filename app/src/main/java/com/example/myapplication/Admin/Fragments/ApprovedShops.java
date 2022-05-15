@@ -1,5 +1,6 @@
 package com.example.myapplication.Admin.Fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -55,6 +56,7 @@ public class ApprovedShops extends Fragment {
     private void data()
     {
         mFirebaseDatabaseA.addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -65,6 +67,7 @@ public class ApprovedShops extends Fragment {
                     }
                     adapterClassAdmin = new AdapterClassAdmin(shopDataClassList, getContext());
                     recyclerView.setAdapter(adapterClassAdmin);
+                    adapterClassAdmin.notifyDataSetChanged();
             }
 
             @Override

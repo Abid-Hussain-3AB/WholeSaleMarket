@@ -8,20 +8,11 @@
     tools:context=".Admin.ShopApprovalActivity">
 
     <TextView
-        android:id="@+id/tvStatus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:text="Register" />
-
-    <TextView
         android:id="@+id/tvShopId1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:gravity="center_horizontal"
+        android:layout_marginStart="10dp"
         android:text="ID"
         tools:text="ID" />
 
@@ -30,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:gravity="center_horizontal"
+        android:layout_marginStart="10dp"
         android:text="Name"
         tools:text="Name" />
 
@@ -39,29 +30,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:gravity="center_horizontal"
+        android:layout_marginStart="10dp"
         android:text="City"
         tools:text="City" />
-
+    <TextView
+        android:id="@+id/tvShopaddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="10dp"
+        android:text="Address"
+        tools:text="Address" />
+    <TextView
+        android:id="@+id/tvShopalocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="10dp"
+        android:text="Location"
+        tools:text="Location" />
     <TextView
         android:id="@+id/tvShopType1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:gravity="center_horizontal"
+        android:layout_marginStart="10dp"
         android:text="Type"
         tools:text="Type" />
 
     <Button
         android:id="@+id/btnConfirmRequest"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:text="Confrim"
         android:visibility="gone" />
 
     <Button
         android:id="@+id/btnCancelRequest"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
         android:layout_height="wrap_content"
         android:text="Cancel" />
 

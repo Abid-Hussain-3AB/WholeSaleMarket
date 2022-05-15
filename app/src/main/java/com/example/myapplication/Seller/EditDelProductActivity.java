@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.myapplication.Admin.AdminActivity;
 import com.example.myapplication.DataClasses.ProductDataClass;
+import com.example.myapplication.Other.SplashActivity;
 import com.example.myapplication.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -85,6 +88,10 @@ public class EditDelProductActivity extends AppCompatActivity {
         btncancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                  //  startActivity(new Intent(EditDelProductActivity.this, ShowProductsActivity.class));
+                Intent intent1 = new Intent();
+               // intent1.putExtra("delete",true);
+                setResult(Activity.RESULT_OK,intent1);
                 finish();
             }
         });
@@ -104,10 +111,6 @@ public class EditDelProductActivity extends AppCompatActivity {
                             Toast.makeText(EditDelProductActivity.this, "Please enter Product Quantity.", Toast.LENGTH_LONG).show();
                         } else {
                             EditProduct();
-                            editproductname.setVisibility(View.GONE);
-                            editproducttype.setVisibility(View.GONE);
-                            editproductquantity.setVisibility(View.GONE);
-                            btnconfirm.setVisibility(View.GONE);
                         }
                     }
                 });
@@ -139,10 +142,12 @@ public class EditDelProductActivity extends AppCompatActivity {
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                         for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                             dataSnapshot2.child(PId).getRef().removeValue();
-                            Toast.makeText(EditDelProductActivity.this, "Product Delete Successfully.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditDelProductActivity.this, "Product Delete Successfully", Toast.LENGTH_LONG ).show();
                         }
                     }
                 }
+                btncancel.setVisibility(View.VISIBLE);
+                btncancel.setText("Back to Products");
             }
 
             @Override
@@ -194,10 +199,15 @@ public class EditDelProductActivity extends AppCompatActivity {
                     for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                         if (dataSnapshot2.hasChild(PId)) {
                             dataSnapshot2.child(PId).getRef().setValue(user);
-                            Toast.makeText(EditDelProductActivity.this, "Product Update Successfully.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditDelProductActivity.this, "Product Update Successfully", Toast.LENGTH_LONG).show();
                         }
                     }
                 }
+                Intent intent1 = new Intent();
+                 intent1.putExtra("delete",true);
+                 setResult(RESULT_OK,intent1);
+                 finish();
+                //btncancel.setText("Back to Products");
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

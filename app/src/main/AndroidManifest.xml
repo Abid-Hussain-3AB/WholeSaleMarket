@@ -7,13 +7,17 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="edu.bloomu.huskies.tsc71523.skatelogger.MAPS_RECEIVE"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permisson.READ_GSERVICES"/>
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        tools:ignore="ScopedStorage"></uses-permission>
-
+        tools:ignore="ScopedStorage" />
     <application
+
         android:allowBackup="true"
         android:icon="@drawable/icona"
         android:label="@string/app_name"
@@ -21,43 +25,47 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".Other.MapActivity"
+            android:exported="false" />
+        <activity
             android:name=".Buyer.DetailActivity"
             android:exported="false" />
         <activity
             android:name=".Seller.EditDelProductActivity"
-            android:theme="@style/DefaultTheme"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/DefaultTheme" />
         <activity
             android:name=".Admin.ShopApprovalActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/DefaultTheme" />
         <activity
             android:name=".Seller.ShowProductsActivity"
-            android:theme="@style/DefaultTheme"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/DefaultTheme" />
         <activity
             android:name=".Seller.AddProductActivity"
-            android:theme="@style/DefaultTheme"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/DefaultTheme" />
         <activity
             android:name=".Seller.AddShopActivity"
-            android:theme="@style/DefaultTheme"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/DefaultTheme" />
         <activity
             android:name=".Other.SignUpActivity"
-            android:theme="@style/DefaultTheme"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/DefaultTheme" />
         <activity
             android:name=".Buyer.BuyerActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".Seller.SellerActivity"
-            android:theme="@style/DefaultTheme"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/DefaultTheme" />
         <activity
             android:name=".Admin.AdminActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".Other.SignInActivity"
             android:exported="true" />
@@ -71,6 +79,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyACoFOXny0NHgCczt---0gNUELVU6n1xo8" />
+
     </application>
 
 </manifest>

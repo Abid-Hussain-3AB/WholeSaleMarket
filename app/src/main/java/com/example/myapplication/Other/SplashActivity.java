@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.Admin.AdminActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.Seller.SellerActivity;
 
 public class SplashActivity extends AppCompatActivity {
     @Override
@@ -18,7 +19,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this, AdminActivity.class));
+                startActivity(new Intent(SplashActivity.this, SignInActivity.class));
                 finish();
             }
         },2500);

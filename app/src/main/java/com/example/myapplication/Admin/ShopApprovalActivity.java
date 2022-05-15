@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.DataClasses.ShopDataClass;
+import com.example.myapplication.Other.SplashActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.Seller.EditDelProductActivity;
 import com.google.firebase.database.DataSnapshot;
@@ -24,33 +26,42 @@ public class ShopApprovalActivity extends AppCompatActivity {
     TextView tvType;
     TextView tvCity;
     TextView tvId;
-    TextView tvstatus;
+    TextView tvAddress;
+    TextView tvShopaLocation;
     Button Confirm, Cancel;
     private DatabaseReference mFirebaseDatabase;
     private DatabaseReference mFirebaseDatabaseA;
-    String name,type,city,id,image;
+    String name,type,city,address,id,image,location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_approval);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
         tvName = findViewById(R.id.tvShopName1);
         tvCity = findViewById(R.id.tvShopCity1);
+        tvAddress = findViewById(R.id.tvShopaddress);
         tvType = findViewById(R.id.tvShopType1);
         tvId = findViewById(R.id.tvShopId1);
-        tvstatus = findViewById(R.id.tvStatus);
         Confirm = findViewById(R.id.btnConfirmRequest);
         Cancel = findViewById(R.id.btnCancelRequest);
+        tvShopaLocation = findViewById(R.id.tvShopalocation);
         Intent intent = getIntent();
         name = intent.getStringExtra("Name");
         type = intent.getStringExtra("Type");
         city = intent.getStringExtra("City");
+        address = intent.getStringExtra("Address");
         id = intent.getStringExtra("Id");
         image = intent.getStringExtra("Image");
-        tvName.setText(name);
-        tvType.setText(type);
-        tvCity.setText(city);
-        tvId.setText(id);
+        location = intent.getStringExtra("Location");
+        tvName.setText("Shop Name: "+name);
+        tvType.setText("Shop Type: "+type);
+        tvCity.setText("Shop City: "+city);
+        tvId.setText("Shop Id: "+id);
+        tvAddress.setText("Shop Address"+address);
+        tvShopaLocation.setText("Shop Location: "+location);
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("Shops");
         mFirebaseDatabaseA = FirebaseDatabase.getInstance().getReferenceFromUrl("https://login-b93ab-default-rtdb.firebaseio.com/");
         mFirebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -58,12 +69,13 @@ public class ShopApprovalActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChild(id))
                 {
-                    Toast.makeText(ShopApprovalActivity.this, "This Shop is already Register", Toast.LENGTH_SHORT).show();
-                    tvstatus.setText("Registered Shop");
+                    Toast.makeText(ShopApprovalActivity.this, "Registered Shop", Toast.LENGTH_SHORT).show();
+                    getSupportActionBar().setTitle("Registered Shop");
                 }
                 else {
+                    Toast.makeText(ShopApprovalActivity.this, "UnRegistered Shop", Toast.LENGTH_SHORT).show();
                     Confirm.setVisibility(View.VISIBLE);
-                    tvstatus.setText("Unregistered Shop");
+                    getSupportActionBar().setTitle("UnRegistered Shop");
                 }
 
             }
@@ -77,7 +89,6 @@ public class ShopApprovalActivity extends AppCompatActivity {
            @Override
            public void onClick(View view) {
                addShop();
-               finish();
            }
        });
        Cancel.setOnClickListener(new View.OnClickListener() {
@@ -98,13 +109,11 @@ public class ShopApprovalActivity extends AppCompatActivity {
                 }
                 else {
 
-                    ShopDataClass user = new ShopDataClass(name, type, city,id,image);
+                    ShopDataClass user = new ShopDataClass(name, type, city,address,location,id,image);
                     mFirebaseDatabase.child(id).setValue(user);
                     Toast.makeText(ShopApprovalActivity.this, "Shop Register Successfully", Toast.LENGTH_SHORT).show();
                     Dell();
                 }
-
-
             }
 
             @Override
@@ -124,6 +133,8 @@ public class ShopApprovalActivity extends AppCompatActivity {
                     {
                         dataSnapshot1.child(id).getRef().removeValue();
                     }
+                    startActivity(new Intent(ShopApprovalActivity.this, AdminActivity.class));
+                    finish();
                 }
 
             }
@@ -133,5 +144,14 @@ public class ShopApprovalActivity extends AppCompatActivity {
 
             }
         });
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

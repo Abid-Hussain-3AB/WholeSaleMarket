@@ -74,7 +74,27 @@
             android:textColor="@color/white"
             tools:ignore="Deprecated" />
     </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/filledTextField3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Shop Address">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etShopAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="0"
+            android:maxLines="1"
+            android:maxLength="11"
+            android:phoneNumber="false"
+            android:textColor="@color/white"
+            tools:ignore="Deprecated" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnCamera"
@@ -88,7 +108,17 @@
         android:text="Camera"
         android:textAllCaps="false"
         android:visibility="gone" />
-
+    <Button
+        android:id="@+id/btnLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="32dp"
+        android:textAllCaps="false"
+        android:background="@drawable/textview_design"
+        android:text="Location" />
     <Button
         android:id="@+id/btnGallery"
         android:layout_width="match_parent"

@@ -51,6 +51,8 @@ public class AdapterClassAdmin extends RecyclerView.Adapter<AdapterClassAdmin.Vi
                 Intent intent = new Intent(context, ShopApprovalActivity.class);
                 intent.putExtra("Name",shopDataClass.getShopName());
                 intent.putExtra("Type",shopDataClass.getShopType());
+                intent.putExtra("Address",shopDataClass.getShopAddress());
+                intent.putExtra("Location",shopDataClass.getShopLocation());
                 intent.putExtra("City",shopDataClass.getShopCity());
                 intent.putExtra("Id",shopDataClass.getShopId());
                 intent.putExtra("Image",shopDataClass.getShopImage());
