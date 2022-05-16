@@ -24,15 +24,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GroceriesFrag extends Fragment {
-
-
     private DatabaseReference mFirebaseDatabase;
     RecyclerView recyclerView;
     AdapterClassProduct adapterClassProduct;
     private List<ProductDataClass> productDataClassesList;
     List<String> arrayLists;
     View v;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

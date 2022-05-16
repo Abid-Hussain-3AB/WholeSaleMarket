@@ -25,6 +25,9 @@
         android:layout_height="wrap_content"
         android:background="@color/teal_700"
         app:tabTextColor="@color/white"
+        app:tabMode="auto"
+        app:tabGravity="start"
+        app:tabSelectedTextColor="@color/black"
         tools:ignore="SpeakableTextPresentCheck">
     </com.google.android.material.tabs.TabLayout>
 

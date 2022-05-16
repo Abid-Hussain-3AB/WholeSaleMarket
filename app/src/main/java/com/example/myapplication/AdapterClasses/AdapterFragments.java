@@ -40,17 +40,17 @@ public class AdapterFragments extends FragmentStatePagerAdapter {
                 return new GroceriesFrag();
             case 3:
                 return new HomeAppliancesFrag();
-            case 5:
+            case 4:
                 return new CosmeticsFrag();
-            case 6:
+            case 5:
                 return new JewelryFrag();
-            case 7:
+            case 6:
                 return new ApparelFrag();
-            case 8:
+            case 7:
                 return new VehiclePartsFrag();
-            case 9:
+            case 8:
                 return new ConstructionFrag();
-            case 10:
+            case 9:
                 return new FertilizerFrag();
             default:
                 return null;

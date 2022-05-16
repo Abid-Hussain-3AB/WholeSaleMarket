@@ -31,7 +31,6 @@ public class HomeAppliancesFrag extends Fragment {
     private List<ProductDataClass> productDataClassesList;
     List<String> arrayLists;
     View v;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
