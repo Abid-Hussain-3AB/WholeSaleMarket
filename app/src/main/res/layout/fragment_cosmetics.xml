@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/browser_actions_bg_grey"
-    tools:context=".Buyer.Fragments.JewelryFrag">
+    tools:context=".Buyer.Fragments.CosmeticsFrag">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rc_jewelry"
+        android:id="@+id/rc_cosmetics"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

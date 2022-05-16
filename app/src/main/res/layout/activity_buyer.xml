@@ -11,18 +11,20 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:id="@+id/appBarlayout"
+
         tools:ignore="MissingConstraints">
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:id="@+id/toolBar"
-        android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+        android:backgroundTint="@color/white"
+        android:id="@+id/toolBar">
     </androidx.appcompat.widget.Toolbar>
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tablayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+        android:background="@color/teal_700"
+        app:tabTextColor="@color/white"
         tools:ignore="SpeakableTextPresentCheck">
     </com.google.android.material.tabs.TabLayout>
 

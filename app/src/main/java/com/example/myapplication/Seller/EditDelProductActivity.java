@@ -26,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class EditDelProductActivity extends AppCompatActivity {
-    EditText editproductname, editproducttype, editproductquantity;
+    EditText etproductname, etproducttype,etproductmompany, etproductprice, etminsale, etmaxsale, etproductquantity,etproductdetail;
     private DatabaseReference mFirebaseDatabase;
     Button btndel,btnedit,btnconfirm,btncancel;
     String PId,image;
@@ -38,18 +38,28 @@ public class EditDelProductActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle("Delete, Edit Product");
         Intent intent = getIntent();
-        editproductname = findViewById(R.id.EditProductName);
-        editproductname.setVisibility(View.GONE);
-        editproducttype = findViewById(R.id.EditProductType);
-        editproducttype.setVisibility(View.GONE);
-        editproductquantity = findViewById(R.id.EditQuantity);
-        editproductquantity.setVisibility(View.GONE);
+        etproductname = findViewById(R.id.etProductNameE);
+        etproducttype = findViewById(R.id.etProductTypeE);
+        etproductmompany = findViewById(R.id.etProductCompanyE);
+        etproductprice = findViewById(R.id.etProducPriceE);
+        etminsale = findViewById(R.id.etProductMinForSaleE);
+        etmaxsale = findViewById(R.id.etProductMaxForSaleEE);
+        etproductquantity = findViewById(R.id.etProductQuantityE);
+        etproductdetail = findViewById(R.id.etProductDetailE);
         btndel = findViewById(R.id.btnDel);
         btnedit = findViewById(R.id.btnEdit);
         btnconfirm = findViewById(R.id.btnConfirm);
         btncancel = findViewById(R.id.btnCancel);
         btnconfirm.setVisibility(View.GONE);
         btncancel.setVisibility(View.GONE);
+        etproductname.setVisibility(View.GONE);
+        etproducttype.setVisibility(View.GONE);
+        etproductmompany.setVisibility(View.GONE);
+        etproductprice.setVisibility(View.GONE);
+        etminsale.setVisibility(View.GONE);
+        etmaxsale.setVisibility(View.GONE);
+        etproductquantity.setVisibility(View.GONE);
+        etproductdetail.setVisibility(View.GONE);
         PId = intent.getStringExtra("ID");
         image = intent.getStringExtra("image");
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("Products");
@@ -76,9 +86,14 @@ public class EditDelProductActivity extends AppCompatActivity {
         btnedit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editproductname.setVisibility(View.VISIBLE);
-                editproducttype.setVisibility(View.VISIBLE);
-                editproductquantity.setVisibility(View.VISIBLE);
+                etproductname.setVisibility(View.VISIBLE);
+                etproducttype.setVisibility(View.VISIBLE);
+                etproductmompany.setVisibility(View.VISIBLE);
+                etproductprice.setVisibility(View.VISIBLE);
+                etminsale.setVisibility(View.VISIBLE);
+                etmaxsale.setVisibility(View.VISIBLE);
+                etproductquantity.setVisibility(View.VISIBLE);
+                etproductdetail.setVisibility(View.VISIBLE);
                 getData();
                 btndel.setVisibility(View.GONE);
                 btnconfirm.setVisibility(View.VISIBLE);
@@ -89,9 +104,9 @@ public class EditDelProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                   //  startActivity(new Intent(EditDelProductActivity.this, ShowProductsActivity.class));
-                Intent intent1 = new Intent();
+                //Intent intent1 = new Intent();
                // intent1.putExtra("delete",true);
-                setResult(Activity.RESULT_OK,intent1);
+                //setResult(Activity.RESULT_OK,intent1);
                 finish();
             }
         });
@@ -103,13 +118,32 @@ public class EditDelProductActivity extends AppCompatActivity {
                 alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if ((TextUtils.isEmpty(editproductname.getText().toString()))) {
-                            Toast.makeText(EditDelProductActivity.this, "Please enter Product Name.", Toast.LENGTH_LONG).show();
-                        } else if ((TextUtils.isEmpty(editproducttype.getText().toString()))) {
+                        if ((TextUtils.isEmpty(etproductname.getText().toString()))) {
+                            Toast.makeText(EditDelProductActivity.this, "Please enter Product Name .", Toast.LENGTH_LONG).show();
+                        }
+                        else if ((TextUtils.isEmpty(etproducttype.getText().toString()))){
                             Toast.makeText(EditDelProductActivity.this, "Please enter Product Type.", Toast.LENGTH_LONG).show();
-                        } else if ((TextUtils.isEmpty(editproductquantity.getText().toString()))) {
+                        }
+                        else if ((TextUtils.isEmpty(etproductmompany.getText().toString()))){
+                            Toast.makeText(EditDelProductActivity.this, "Please enter Product Company.", Toast.LENGTH_LONG).show();
+                        }
+                        else if ((TextUtils.isEmpty(etproductprice.getText().toString()))){
+                            Toast.makeText(EditDelProductActivity.this, "Please enter Product Price.", Toast.LENGTH_LONG).show();
+                        }
+                        else if ((TextUtils.isEmpty(etminsale.getText().toString()))){
+                            Toast.makeText(EditDelProductActivity.this, "Please enter Product Minimum For Sale.", Toast.LENGTH_LONG).show();
+                        }
+                        else if ((TextUtils.isEmpty(etmaxsale.getText().toString()))){
+                            Toast.makeText(EditDelProductActivity.this, "Please enter Product Maximum For Sale.", Toast.LENGTH_LONG).show();
+                        }
+                        else if ((TextUtils.isEmpty(etproductquantity.getText().toString())))
+                        {
                             Toast.makeText(EditDelProductActivity.this, "Please enter Product Quantity.", Toast.LENGTH_LONG).show();
-                        } else {
+                        }
+                        else if ((TextUtils.isEmpty(etproductdetail.getText().toString()))){
+                            Toast.makeText(EditDelProductActivity.this, "Please enter Product Detail.", Toast.LENGTH_LONG).show();
+                        }
+                        else {
                             EditProduct();
                         }
                     }
@@ -169,10 +203,20 @@ public class EditDelProductActivity extends AppCompatActivity {
                                  assert sdc != null;
                                 String name = sdc.getProductName();
                                 String type = sdc.getProductType();
+                                String company = sdc.getProductCompany();
+                                String price = sdc.getProductPrice();
+                                String min = sdc.getProductMinSale();
+                                String max = sdc.getProductMaxSale();
                                 String quantity = sdc.getProductQuantity();
-                                editproductname.setText(name);
-                                editproducttype.setText(type);
-                                editproductquantity.setText(quantity);
+                                String detail = sdc.getProductDetail();
+                                etproductname.setText(name);
+                                etproducttype.setText(type);
+                                etproductmompany.setText(company);
+                                etproductprice.setText(price);
+                                etminsale.setText(min);
+                                etmaxsale.setText(max);
+                                etproductquantity.setText(quantity);
+                                etproductdetail.setText(detail);
                             }
                         }
                     }
@@ -186,15 +230,18 @@ public class EditDelProductActivity extends AppCompatActivity {
 
     }
     public void EditProduct()
-    {
-        String name = editproductname.getText().toString();
-        String type = editproducttype.getText().toString();
-        String quantity = editproductquantity.getText().toString();
-
+    {String name = etproductname.getText().toString();
+        String type = etproducttype.getText().toString();
+        String company = etproductmompany.getText().toString();
+        String price = etproductprice.getText().toString();
+        String min = etminsale.getText().toString();
+        String max = etmaxsale.getText().toString();
+        String quantity = etproductquantity.getText().toString();
+        String detail = etproductdetail.getText().toString();
         mFirebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ProductDataClass user = new ProductDataClass(name, type, quantity,PId,image);
+                ProductDataClass user = new ProductDataClass(name, type,company,price,min,max,quantity,detail,PId,image);
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                         if (dataSnapshot2.hasChild(PId)) {
@@ -203,10 +250,10 @@ public class EditDelProductActivity extends AppCompatActivity {
                         }
                     }
                 }
-                Intent intent1 = new Intent();
-                 intent1.putExtra("delete",true);
-                 setResult(RESULT_OK,intent1);
-                 finish();
+              //  Intent intent1 = new Intent();
+               //  intent1.putExtra("delete",true);
+                 //setResult(RESULT_OK,intent1);
+                // finish();
                 //btncancel.setText("Back to Products");
             }
             @Override

@@ -12,8 +12,6 @@
         android:orientation="vertical"
         android:padding="8dp"
         tools:context=".Seller.AddProductActivity">
-
-
         <Spinner
             android:id="@+id/spinner1"
             android:layout_width="wrap_content"
@@ -42,9 +40,6 @@
                 android:id="@+id/etProductName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="0"
-                android:maxLength="11"
-                android:maxLines="1"
                 android:phoneNumber="false"
                 android:textColor="@color/white"
                 tools:ignore="Deprecated" />
@@ -64,16 +59,84 @@
                 android:id="@+id/etProductType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="0"
-                android:maxLength="11"
-                android:maxLines="1"
                 android:phoneNumber="false"
                 android:textColor="@color/white"
                 tools:ignore="Deprecated" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filledTextField5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="32dp"
+            android:hint="Product Company">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProductCompany"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:phoneNumber="false"
+                android:textColor="@color/white"
+                tools:ignore="Deprecated" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filledTextField6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="32dp"
+            android:hint="Product Price">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProducPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="0"
+                android:maxLength="6"
+                android:maxLines="1"
+                android:phoneNumber="true"
+                android:textColor="@color/white"
+                tools:ignore="Deprecated" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/filledTextField3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="32dp"
+            android:hint="Minimum Product Sale">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProductMinForSale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:phoneNumber="true"
+                android:textColor="@color/white"
+                tools:ignore="Deprecated" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filledTextField7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="32dp"
+            android:hint="Maximum Product Sale">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProductMaxForSale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:phoneNumber="true"
+                android:textColor="@color/white"
+                tools:ignore="Deprecated" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filledTextField8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -82,17 +145,30 @@
             android:hint="Product Quantity">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etQuantity"
+                android:id="@+id/etProductQuantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="0"
-                android:maxLength="11"
-                android:maxLines="1"
+                android:phoneNumber="true"
+                android:textColor="@color/white"
+                tools:ignore="Deprecated" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filledTextField9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="32dp"
+            android:hint="Product Detail">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProductDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:phoneNumber="false"
                 android:textColor="@color/white"
                 tools:ignore="Deprecated" />
         </com.google.android.material.textfield.TextInputLayout>
-
         <Button
             android:id="@+id/btnChooseIMG"
             android:layout_width="match_parent"

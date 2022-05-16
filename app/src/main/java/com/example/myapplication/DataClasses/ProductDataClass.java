@@ -6,16 +6,66 @@ public class ProductDataClass {
 
     public String productName;
     public String productType;
+    public String productCompany;
+    public String productPrice;
+    public String productMinSale;
+    public String productMaxSale;
     public String productQuantity;
+    public String productDetail;
     public String productId;
     public String image;
 
-    public ProductDataClass(String productName, String productType, String productQuantity, String productId, String image) {
+    public ProductDataClass(String productName, String productType, String productCompany, String productPrice, String productMinSale, String productMaxSale, String productQuantity, String productDetail, String productId, String image) {
         this.productName = productName;
         this.productType = productType;
+        this.productCompany = productCompany;
+        this.productPrice = productPrice;
+        this.productMinSale = productMinSale;
+        this.productMaxSale = productMaxSale;
         this.productQuantity = productQuantity;
+        this.productDetail = productDetail;
         this.productId = productId;
         this.image = image;
+    }
+
+    public String getProductCompany() {
+        return productCompany;
+    }
+
+    public void setProductCompany(String productCompany) {
+        this.productCompany = productCompany;
+    }
+
+    public String getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(String productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    public String getProductMinSale() {
+        return productMinSale;
+    }
+
+    public void setProductMinSale(String productMinSale) {
+        this.productMinSale = productMinSale;
+    }
+
+    public String getProductMaxSale() {
+        return productMaxSale;
+    }
+
+    public void setProductMaxSale(String productMaxSale) {
+        this.productMaxSale = productMaxSale;
+    }
+
+    public String getProductDetail() {
+        return productDetail;
+    }
+
+    public void setProductDetail(String productDetail) {
+        this.productDetail = productDetail;
     }
 
     public ProductDataClass() {

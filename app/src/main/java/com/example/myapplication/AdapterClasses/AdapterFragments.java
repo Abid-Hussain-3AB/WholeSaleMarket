@@ -9,7 +9,14 @@ import com.example.myapplication.Admin.Fragments.ApprovedShops;
 import com.example.myapplication.Admin.Fragments.RequestedShops;
 import com.example.myapplication.Buyer.Fragments.AllProductFrag;
 import com.example.myapplication.Buyer.Fragments.ApparelFrag;
+import com.example.myapplication.Buyer.Fragments.ConstructionFrag;
+import com.example.myapplication.Buyer.Fragments.CosmeticsFrag;
+import com.example.myapplication.Buyer.Fragments.ElectronicsFrag;
+import com.example.myapplication.Buyer.Fragments.FertilizerFrag;
+import com.example.myapplication.Buyer.Fragments.GroceriesFrag;
+import com.example.myapplication.Buyer.Fragments.HomeAppliancesFrag;
 import com.example.myapplication.Buyer.Fragments.JewelryFrag;
+import com.example.myapplication.Buyer.Fragments.VehiclePartsFrag;
 
 public class AdapterFragments extends FragmentStatePagerAdapter {
     private int tabCount;
@@ -28,13 +35,23 @@ public class AdapterFragments extends FragmentStatePagerAdapter {
             case 0:
                 return new AllProductFrag();
             case 1:
-                return new ApparelFrag();
+                return new ElectronicsFrag();
             case 2:
-                return new JewelryFrag();
+                return new GroceriesFrag();
             case 3:
-                return new RequestedShops();
-            case 4:
-                return new ApprovedShops();
+                return new HomeAppliancesFrag();
+            case 5:
+                return new CosmeticsFrag();
+            case 6:
+                return new JewelryFrag();
+            case 7:
+                return new ApparelFrag();
+            case 8:
+                return new VehiclePartsFrag();
+            case 9:
+                return new ConstructionFrag();
+            case 10:
+                return new FertilizerFrag();
             default:
                 return null;
         }
