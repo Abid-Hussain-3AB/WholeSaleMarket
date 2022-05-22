@@ -45,10 +45,10 @@
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_add_shop.xml" value="0.1766304347826087" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_admin.xml" value="0.1766304347826087" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_buyer.xml" value="0.1766304347826087" />
-        <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_detail.xml" value="0.1766304347826087" />
+        <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_detail.xml" value="0.2" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_edit_del_product.xml" value="0.1766304347826087" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_login_new.xml" value="0.25" />
-        <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_map.xml" value="0.2" />
+        <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_map.xml" value="0.22" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_owner.xml" value="0.22" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_shop_approval.xml" value="0.1766304347826087" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_show_products.xml" value="0.1766304347826087" />
@@ -56,6 +56,7 @@
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_signin.xml" value="0.33" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_splash.xml" value="0.1766304347826087" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/admin_view.xml" value="0.1766304347826087" />
+        <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/fragment_account.xml" value="0.25" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/fragment_all_product.xml" value="0.1766304347826087" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/fragment_apparel.xml" value="0.1766304347826087" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/fragment_approved_shops.xml" value="0.1766304347826087" />
@@ -72,6 +73,8 @@
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/owner_products_view.xml" value="0.1766304347826087" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/product_view.xml" value="0.5" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/retriveproductsactivity.xml" value="0.1766304347826087" />
+        <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/menu/menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/menu/menu1.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>

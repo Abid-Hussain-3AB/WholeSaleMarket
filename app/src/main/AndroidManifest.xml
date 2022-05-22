@@ -25,9 +25,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".Other.MapActivity"
-            android:exported="false" />
-        <activity
             android:name=".Buyer.DetailActivity"
             android:exported="false" />
         <activity
