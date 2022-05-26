@@ -49,9 +49,13 @@ public class AdapterClassProduct extends RecyclerView.Adapter<AdapterClassProduc
                 Intent intent = new Intent(context, DetailActivity.class);
                 intent.putExtra("image",productDataClass.getImage());
                 intent.putExtra("name",productDataClass.getProductName());
-                intent.putExtra("type",productDataClass.getProductType());
+                intent.putExtra("price",productDataClass.getProductPrice());
+                intent.putExtra("max",productDataClass.getProductMaxSale());
+                intent.putExtra("min",productDataClass.getProductMinSale());
+                intent.putExtra("detail",productDataClass.getProductDetail());
+                intent.putExtra("id", productDataClass.getProductId());
+                intent.putExtra("company",productDataClass.getProductCompany());
                 intent.putExtra("quantity",productDataClass.getProductQuantity());
-                intent.putExtra("ID", productDataClass.getProductId());
                 context.startActivity(intent);
             }
         });

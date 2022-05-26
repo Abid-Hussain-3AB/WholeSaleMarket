@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -42,6 +43,11 @@ public class SignInActivity extends AppCompatActivity implements AdapterView.OnI
     private DatabaseReference aFirebaseDatabase;
     String item;
     TextView tv6;
+    public static final String filename = "login";
+    public static final String userName = "username";
+    public static final String password = "password";
+    public static final String nameq = "Abid";
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +65,11 @@ public class SignInActivity extends AppCompatActivity implements AdapterView.OnI
         etSignInName = findViewById(R.id.etSignInPhone);
         etSignInPassword = findViewById(R.id.etSignInPassword);
         tv6 = findViewById(R.id.textView6);
+        sharedPreferences = getSharedPreferences(filename,Context.MODE_PRIVATE);
+        if (sharedPreferences.contains(userName)){
+            Intent intent = new Intent(SignInActivity.this, BuyerActivity.class);
+            startActivity(intent);
+        }
         aFirebaseDatabase = FirebaseDatabase.getInstance().getReferenceFromUrl("https://login-b93ab-default-rtdb.firebaseio.com/");
         tv6.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,10 +124,17 @@ public class SignInActivity extends AppCompatActivity implements AdapterView.OnI
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 if (dataSnapshot.hasChild(Phone)) {
                                     final String getpassword = dataSnapshot.child(Phone).child("password").getValue(String.class);
+                                    final String Nameq = dataSnapshot.child(Phone).child("username").getValue(String.class);
                                     if (getpassword.equals(UPassword)) {
+                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                                        editor.putString(userName,Phone);
+                                        editor.putString(password,getpassword);
+                                        editor.putString(nameq,Nameq);
+                                        editor.commit();
                                         Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(SignInActivity.this, BuyerActivity.class);
-                                        startActivity(intent);
+                                      //  Intent intent = new Intent(SignInActivity.this, BuyerActivity.class);
+                                        //startActivity(intent);
+                                        finish();
                                     } else {
                                         Toast.makeText(SignInActivity.this, "Wrong User Name or Password or Role", Toast.LENGTH_LONG).show();
                                     }
