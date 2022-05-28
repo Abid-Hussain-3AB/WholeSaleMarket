@@ -100,5 +100,10 @@ public class CartFrag extends Fragment {
             }
         });
     }
-
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Intent intent = new Intent(v.getContext(), BuyerActivity.class);
+        startActivity(intent);
+    }
 }

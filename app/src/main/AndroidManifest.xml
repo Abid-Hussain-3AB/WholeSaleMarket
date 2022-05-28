@@ -29,7 +29,8 @@
             android:exported="false" />
         <activity
             android:name=".Buyer.DetailActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/DefaultTheme"/>
         <activity
             android:name=".Seller.EditDelProductActivity"
             android:exported="false"

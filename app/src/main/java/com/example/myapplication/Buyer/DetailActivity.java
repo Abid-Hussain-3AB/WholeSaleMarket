@@ -49,6 +49,9 @@ BottomNavigationView bottomNavigationView;
         if (sharedPreferences.contains(userName)){
             user_id =sharedPreferences.getString(userName,"");
         }
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("Product Detail");
         bottomNavigationView = findViewById(R.id.bottom_navigationD);
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
         tvName = findViewById(R.id.tvProductNameD);
@@ -120,7 +123,6 @@ BottomNavigationView bottomNavigationView;
         mFirebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //CartDataClass cartDataClass = new CartDataClass(product_id);
                 ProductDataClass user = new ProductDataClass(productname,producttype,productmompany,productprice,productminsale,productmaxsale,productquantity,productdetail,product_id, imgUrl);
                         if (dataSnapshot.hasChild(user_id)) {
                            mFirebaseDatabase.child(user_id).child("my cart").child(product_id).setValue(user);
@@ -134,5 +136,14 @@ BottomNavigationView bottomNavigationView;
                 Toast.makeText(DetailActivity.this, "Fail to Update Data." + databaseError, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
