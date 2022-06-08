@@ -20,7 +20,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.myapplication.Admin.AdminActivity;
 import com.example.myapplication.Seller.SellerActivity;
 import com.example.myapplication.R;
@@ -30,7 +29,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -132,8 +130,8 @@ public class SignInActivity extends AppCompatActivity implements AdapterView.OnI
                                         editor.putString(nameq,Nameq);
                                         editor.commit();
                                         Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                                      //  Intent intent = new Intent(SignInActivity.this, BuyerActivity.class);
-                                        //startActivity(intent);
+                                        Intent intent = new Intent(SignInActivity.this, BuyerActivity.class);
+                                        startActivity(intent);
                                         finish();
                                     } else {
                                         Toast.makeText(SignInActivity.this, "Wrong User Name or Password or Role", Toast.LENGTH_LONG).show();

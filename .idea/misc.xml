@@ -42,6 +42,9 @@
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/drawable/ic_launcher_background.xml" value="0.122" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/drawable/ic_launcher_background_new.xml" value="0.122" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/drawable/ic_launcher_background_new1.xml" value="0.122" />
+        <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/drawable/ic_search.xml" value="0.122" />
+        <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/drawable/ic_searchBlack.xml" value="0.122" />
+        <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/drawable/ic_search_black.xml" value="0.122" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/drawable/ic_settings.xml" value="0.122" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/drawable/ic_shopping_bag.xml" value="0.122" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/drawable/ic_store.xml" value="0.122" />
@@ -49,12 +52,14 @@
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_add_product.xml" value="0.25" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_add_shop.xml" value="0.1766304347826087" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_admin.xml" value="0.1766304347826087" />
-        <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_buyer.xml" value="0.1766304347826087" />
-        <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_detail.xml" value="0.5" />
+        <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_buyer.xml" value="0.25" />
+        <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_detail.xml" value="0.3829787234042553" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_edit_del_product.xml" value="0.1766304347826087" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_login_new.xml" value="0.25" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_map.xml" value="0.22" />
+        <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_notification.xml" value="0.1766304347826087" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_owner.xml" value="0.22" />
+        <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_setting.xml" value="0.1766304347826087" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_settings.xml" value="0.1766304347826087" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_shop_approval.xml" value="0.1766304347826087" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/layout/activity_show_products.xml" value="0.1766304347826087" />
@@ -84,6 +89,7 @@
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/menu/menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/menu/menu1.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/menu/menu_detail.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/itsab/Desktop/FYP/V1.3/MyApplication/app/src/main/res/menu/menu_search.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>

@@ -1,10 +1,11 @@
 package com.example.myapplication.Buyer.Fragments;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -19,19 +20,23 @@ import android.widget.Toast;
 import com.example.myapplication.Buyer.BuyerActivity;
 import com.example.myapplication.Other.SignInActivity;
 import com.example.myapplication.R;
-import com.example.myapplication.Settings.Activity_Settings;
-
-import org.w3c.dom.Text;
+import com.example.myapplication.Buyer.SearchActivity;
+import com.example.myapplication.Settings.SettingActivity;
 
 public class AccountFrag extends Fragment {
     View v;
-    TextView account;
+    TextView account, signout;
     ImageView setting;
     String Fname="";
     Toolbar toolbar;
-public AccountFrag(String fname)
+    SharedPreferences sharedPreferences;
+    public static final String filename = "login";
+    public static final String name = "Abid";
+    public static final String userName = "username";
+    public static final String password = "password";
+public AccountFrag()
 {
-Fname = fname;
+
 }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,14 +54,35 @@ Fname = fname;
                 startActivity(intent);
             }
         });
+        sharedPreferences = v.getContext().getSharedPreferences(filename, Context.MODE_PRIVATE);
+        if (sharedPreferences.contains(userName)){
+            Fname =sharedPreferences.getString(name,"");
 
+        }
         account = v.findViewById(R.id.add_account);
         setting = v.findViewById(R.id.setting);
+        signout = v.findViewById(R.id.signOut);
+        signout.setVisibility(View.GONE);
         account.setText(Fname);
         if (Fname.isEmpty())
         {
             account.setText("SignIn or Register");
         }
+        else {
+            signout.setVisibility(View.VISIBLE);
+        }
+        signout.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("CommitPrefEdits")
+            @Override
+            public void onClick(View view) {
+                if (sharedPreferences.contains(userName)){
+                    sharedPreferences.edit().clear().commit();
+                }
+                Fname="";
+                signout.setVisibility(View.GONE);
+                account.setText("SignIn or Register");
+            }
+        });
             account.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -75,7 +101,7 @@ Fname = fname;
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(v.getContext(), Activity_Settings.class);
+                Intent intent = new Intent(v.getContext(), SettingActivity.class);
                 startActivity(intent);
             }
         });

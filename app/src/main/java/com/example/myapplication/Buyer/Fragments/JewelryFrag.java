@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,8 +39,7 @@ public class JewelryFrag extends Fragment {
         recyclerView = v.findViewById(R.id.rc_jewelry);
         recyclerView.setHasFixedSize(true);
         arrayLists = new ArrayList<String>();
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
-        productDataClassesList = new ArrayList<>();
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2,RecyclerView.VERTICAL,false));        productDataClassesList = new ArrayList<>();
         // mFirebaseDatabase = FirebaseDatabase.getInstance().getReferenceFromUrl("https://login-b93ab-default-rtdb.firebaseio.com/");
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("Products");
         getData();

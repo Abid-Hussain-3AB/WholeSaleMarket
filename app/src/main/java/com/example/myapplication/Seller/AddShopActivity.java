@@ -36,6 +36,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.DataClasses.ShopDataClass;
+import com.example.myapplication.Notification.FcmNotificationsSender;
+import com.example.myapplication.Notification.Notification;
 import com.example.myapplication.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -255,6 +257,10 @@ public class AddShopActivity extends AppCompatActivity {
                 {
                     ShopDataClass user = new ShopDataClass(Name, Type, City,Address,Location,str,uri);
                     mFirebaseDatabase.child("admin1").child(str).setValue(user);
+                    // notify to admin
+                    FcmNotificationsSender notificationsSender = new FcmNotificationsSender("/topics/all","Shop Request",
+                           "New Shop Request Received: Review it",getApplicationContext(), AddShopActivity.this);
+                    notificationsSender.SendNotifications();
                 }
             }
             @Override

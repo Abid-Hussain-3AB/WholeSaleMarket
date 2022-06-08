@@ -67,5 +67,19 @@
             android:textColor="@color/white"
             android:textSize="17dp">
         </TextView>
+        <TextView
+            android:id="@+id/signOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/textview_design"
+            android:backgroundTint="@color/material_on_surface_stroke"
+            android:backgroundTintMode="screen"
+            android:padding="9dp"
+            android:layout_marginStart="3dp"
+            android:text="SignOut"
+            android:textColor="@color/white"
+            android:textSize="17dp">
+        </TextView>
     </LinearLayout>
 </LinearLayout>
