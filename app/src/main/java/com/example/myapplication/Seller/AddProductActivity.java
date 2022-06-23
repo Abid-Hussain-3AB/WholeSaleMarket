@@ -177,7 +177,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         mFirebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ProductDataClass user = new ProductDataClass(name,type,company,price,min,max,quantity,detail,uniqueID, uri1);
+                ProductDataClass user = new ProductDataClass(name,type,company,price,min,max,quantity,detail,uniqueID,str,uri1);
                 mFirebaseDatabase.child(str).child(productTpe).child(uniqueID).setValue(user);
                 Toast.makeText(AddProductActivity.this, "Data Added", Toast.LENGTH_SHORT).show();
             }

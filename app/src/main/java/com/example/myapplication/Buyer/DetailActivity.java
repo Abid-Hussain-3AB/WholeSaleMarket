@@ -42,7 +42,7 @@ BottomNavigationView bottomNavigationView;
     public static final String password = "password";
     String product_id = "";
     String user_id = "";
-    String productname, producttype,productmompany, productprice, productminsale, productmaxsale, productquantity, productdetail;
+    String productname, producttype,productmompany, productprice, productminsale, productmaxsale, productquantity, productdetail,shopid;
     private DatabaseReference mFirebaseDatabase;
 
     SharedPreferences sharedPreferences;
@@ -67,14 +67,15 @@ BottomNavigationView bottomNavigationView;
         imageView = findViewById(R.id.ImgProductsD);
         Intent intent = getIntent();
         productname = intent.getStringExtra("name");
-        producttype = intent.getStringExtra("name");
-        productmompany = intent.getStringExtra("name");
+        producttype = intent.getStringExtra("type");
+        productmompany = intent.getStringExtra("company");
         productprice = intent.getStringExtra("price");
         productminsale = intent.getStringExtra("min");
         productmaxsale = intent.getStringExtra("max");
         product_id = intent.getStringExtra("id");
         productquantity = intent.getStringExtra("quantity");
         productdetail = intent.getStringExtra("detail");
+        shopid = intent.getStringExtra("shopid");
         tvName.setText(productname);
         tvprice.setText("Rs. "+productprice);
         tvmax.setText(productmaxsale+" (Max. Order)");
@@ -99,7 +100,22 @@ BottomNavigationView bottomNavigationView;
                     Toast.makeText(DetailActivity.this, "Message", Toast.LENGTH_LONG).show();
                     return true;
                 case R.id.buy:
-                    Toast.makeText(DetailActivity.this, "Buy", Toast.LENGTH_LONG).show();
+                    if (user_id.isEmpty()){
+                        Toast.makeText(DetailActivity.this, "Login Or Signup", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(DetailActivity.this,SignInActivity.class);
+                        startActivity(intent);
+                    }
+                    else {
+                        Intent intent1 = new Intent(DetailActivity.this, StartOrderActivity.class);
+                        intent1.putExtra("price", productprice);
+                        intent1.putExtra("image", imgUrl);
+                        intent1.putExtra("min", productminsale);
+                        intent1.putExtra("max", productmaxsale);
+                        intent1.putExtra("name", productname);
+                        intent1.putExtra("uid", user_id);
+                        startActivity(intent1);
+                    }
+                    //Toast.makeText(DetailActivity.this, "Buy", Toast.LENGTH_LONG).show();
                     return true;
                 case R.id.add_to_cart:
                     if (user_id.isEmpty())
@@ -129,7 +145,7 @@ BottomNavigationView bottomNavigationView;
         mFirebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ProductDataClass user = new ProductDataClass(productname,producttype,productmompany,productprice,productminsale,productmaxsale,productquantity,productdetail,product_id, imgUrl);
+                ProductDataClass user = new ProductDataClass(productname,producttype,productmompany,productprice,productminsale,productmaxsale,productquantity,productdetail,product_id,shopid, imgUrl);
                         if (dataSnapshot.hasChild(user_id)) {
                            mFirebaseDatabase.child(user_id).child("my cart").child(product_id).setValue(user);
                             Toast.makeText(DetailActivity.this, "Add to cart Successfully", Toast.LENGTH_LONG).show();

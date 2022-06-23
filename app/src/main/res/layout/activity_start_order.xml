@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/browser_actions_bg_grey"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Buyer.StartOrderActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ImgProductSt"
+            android:layout_width="167dp"
+            android:layout_height="match_parent"
+            app:civ_border_color="#FF000000"
+            android:layout_marginTop="12dp"
+            app:civ_border_width="2dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="18dp"
+            android:layout_marginTop="12dp"
+            android:paddingEnd="5dp">
+
+            <TextView
+                android:id="@+id/tvProductPriceSt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Price"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                tools:text="Price" />
+
+            <TextView
+                android:id="@+id/tvProductMinSt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                tools:text="Min" />
+
+            <TextView
+                android:id="@+id/tvProductMaxSt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                tools:text="Max" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="123dp"
+            android:layout_height="33dp"
+            android:layout_gravity="right"
+            android:layout_marginStart="5dp"
+            android:text="Select Quantity"
+            android:textColor="@color/black"
+            android:textStyle="bold"></TextView>
+
+        <Button
+            android:id="@+id/decrease"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="10dp"
+            android:onClick="decreaseInteger"
+            android:text="-"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/integer_number1"
+            android:layout_width="46dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="20dp"
+            android:clickable="true"
+            android:maxLines="1"
+            android:onClick="onClick"
+            android:phoneNumber="true"
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/increase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="20dp"
+            android:onClick="increaseInteger"
+            android:layout_marginEnd="5dp"
+            android:text="+" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="329dp"
+        android:layout_gravity="bottom"
+        android:layout_weight="1"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/grandTotalSt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold"
+            android:text="Product Value ( 0 type 0 item )       Rs. 000"
+            android:textColor="@color/black"></TextView>
+
+        <TextView
+            android:id="@+id/startOrder"
+            android:layout_width="186dp"
+            android:layout_height="49dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="30dp"
+            android:background="#EBD16951"
+            android:gravity="center"
+            android:text="Start Order"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@android:color/white"></TextView>
+
+    </LinearLayout>
+</LinearLayout>
