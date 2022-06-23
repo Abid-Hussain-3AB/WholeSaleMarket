@@ -35,7 +35,6 @@ import java.util.List;
 
 public class CartFrag extends Fragment {
     private DatabaseReference mFirebaseDatabase;
-    private DatabaseReference mFirebaseDatabase1;
     RecyclerView recyclerView;
     AdapterClassProduct adapterClassProduct;
     private List<ProductDataClass> productDataClassesList;
@@ -68,7 +67,6 @@ public class CartFrag extends Fragment {
         recyclerView.setHasFixedSize(true);
         productDataClassesList = new ArrayList<>();
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2,RecyclerView.VERTICAL,false));
-        mFirebaseDatabase1 = FirebaseDatabase.getInstance().getReferenceFromUrl("https://login-b93ab-default-rtdb.firebaseio.com/");
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("User");
         CartProductId();
        return v;
@@ -100,5 +98,10 @@ public class CartFrag extends Fragment {
             }
         });
     }
-
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Intent intent = new Intent(v.getContext(), BuyerActivity.class);
+        startActivity(intent);
+    }
 }

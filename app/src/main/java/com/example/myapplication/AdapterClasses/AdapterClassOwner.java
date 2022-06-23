@@ -51,6 +51,7 @@ public class AdapterClassOwner extends RecyclerView.Adapter<AdapterClassOwner.Vi
                 Intent intent = new Intent(context, EditDelProductActivity.class);
                 intent.putExtra("image",productDataClass.getImage());
                 intent.putExtra("ID", productDataClass.getProductId());
+                intent.putExtra("shopid",productDataClass.getProductShopId());
                 context.startActivity(intent);
             }
         });

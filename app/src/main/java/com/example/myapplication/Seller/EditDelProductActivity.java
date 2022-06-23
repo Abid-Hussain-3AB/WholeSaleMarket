@@ -29,7 +29,7 @@ public class EditDelProductActivity extends AppCompatActivity {
     EditText etproductname, etproducttype,etproductmompany, etproductprice, etminsale, etmaxsale, etproductquantity,etproductdetail;
     private DatabaseReference mFirebaseDatabase;
     Button btndel,btnedit,btnconfirm,btncancel;
-    String PId,image;
+    String PId,PShop,image;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +62,7 @@ public class EditDelProductActivity extends AppCompatActivity {
         etproductdetail.setVisibility(View.GONE);
         PId = intent.getStringExtra("ID");
         image = intent.getStringExtra("image");
+        PShop = intent.getStringExtra("shopid");
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("Products");
         btndel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -241,7 +242,7 @@ public class EditDelProductActivity extends AppCompatActivity {
         mFirebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ProductDataClass user = new ProductDataClass(name, type,company,price,min,max,quantity,detail,PId,image);
+                ProductDataClass user = new ProductDataClass(name, type,company,price,min,max,quantity,detail,PId,PShop,image);
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                         if (dataSnapshot2.hasChild(PId)) {

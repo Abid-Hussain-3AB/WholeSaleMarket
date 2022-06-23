@@ -12,14 +12,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.myapplication.AdapterClasses.AdapterFragments;
 import com.example.myapplication.Buyer.Fragments.AccountFrag;
-import com.example.myapplication.Buyer.Fragments.AllProductFrag;
-import com.example.myapplication.Buyer.Fragments.ApparelFrag;
 import com.example.myapplication.Buyer.Fragments.CartFrag;
-import com.example.myapplication.Buyer.Fragments.VehiclePartsFrag;
 import com.example.myapplication.Other.SignInActivity;
 import com.example.myapplication.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -34,7 +33,7 @@ public class BuyerActivity extends AppCompatActivity {
     public static final String name = "Abid";
     public static final String userName = "username";
     public static final String password = "password";
-
+    ImageButton searchView;
     SharedPreferences sharedPreferences;
     String Uname="";
     String Uid ="";
@@ -53,6 +52,7 @@ public class BuyerActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tablayout);
         viewPager = findViewById(R.id.viewpager);
         setSupportActionBar(toolbar);
+        searchView = findViewById(R.id.btnSearch);
         tabLayout.addTab(tabLayout.newTab().setText("All Products"));
         tabLayout.addTab(tabLayout.newTab().setText("Electronics"));
         tabLayout.addTab(tabLayout.newTab().setText("Groceries"));
@@ -64,7 +64,6 @@ public class BuyerActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Constructions"));
         tabLayout.addTab(tabLayout.newTab().setText("Fertilizers"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
         fragmentAdapter = new AdapterFragments(getSupportFragmentManager(),tabLayout.getTabCount());
         viewPager.setAdapter(fragmentAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -84,7 +83,13 @@ public class BuyerActivity extends AppCompatActivity {
 
             }
         });
-        //AccountFrag accountFrag = new AccountFrag();
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(BuyerActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @SuppressLint("NonConstantResourceId")
@@ -98,7 +103,7 @@ public class BuyerActivity extends AppCompatActivity {
                     return true;
                 case R.id.account:
                     viewPager.removeAllViews();
-                    fragment = new AccountFrag(Uname);
+                    fragment = new AccountFrag();
                     loadFragment(fragment);
                     return true;
                 case R.id.chat:

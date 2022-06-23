@@ -13,9 +13,11 @@ public class ProductDataClass {
     public String productQuantity;
     public String productDetail;
     public String productId;
+    public String productShopId;
     public String image;
 
-    public ProductDataClass(String productName, String productType, String productCompany, String productPrice, String productMinSale, String productMaxSale, String productQuantity, String productDetail, String productId, String image) {
+
+    public ProductDataClass(String productName, String productType, String productCompany, String productPrice, String productMinSale, String productMaxSale, String productQuantity, String productDetail, String productId, String productShopId, String image) {
         this.productName = productName;
         this.productType = productType;
         this.productCompany = productCompany;
@@ -25,7 +27,16 @@ public class ProductDataClass {
         this.productQuantity = productQuantity;
         this.productDetail = productDetail;
         this.productId = productId;
+        this.productShopId = productShopId;
         this.image = image;
+    }
+
+    public String getProductShopId() {
+        return productShopId;
+    }
+
+    public void setProductShopId(String productShopId) {
+        this.productShopId = productShopId;
     }
 
     public String getProductCompany() {

@@ -9,7 +9,12 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.StyleSpan;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -37,7 +42,7 @@ BottomNavigationView bottomNavigationView;
     public static final String password = "password";
     String product_id = "";
     String user_id = "";
-    String productname, producttype,productmompany, productprice, productminsale, productmaxsale, productquantity, productdetail;
+    String productname, producttype,productmompany, productprice, productminsale, productmaxsale, productquantity, productdetail,shopid;
     private DatabaseReference mFirebaseDatabase;
 
     SharedPreferences sharedPreferences;
@@ -49,6 +54,9 @@ BottomNavigationView bottomNavigationView;
         if (sharedPreferences.contains(userName)){
             user_id =sharedPreferences.getString(userName,"");
         }
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("Product Detail");
         bottomNavigationView = findViewById(R.id.bottom_navigationD);
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
         tvName = findViewById(R.id.tvProductNameD);
@@ -59,19 +67,21 @@ BottomNavigationView bottomNavigationView;
         imageView = findViewById(R.id.ImgProductsD);
         Intent intent = getIntent();
         productname = intent.getStringExtra("name");
-        producttype = intent.getStringExtra("name");
-        productmompany = intent.getStringExtra("name");
+        producttype = intent.getStringExtra("type");
+        productmompany = intent.getStringExtra("company");
         productprice = intent.getStringExtra("price");
         productminsale = intent.getStringExtra("min");
         productmaxsale = intent.getStringExtra("max");
         product_id = intent.getStringExtra("id");
         productquantity = intent.getStringExtra("quantity");
         productdetail = intent.getStringExtra("detail");
+        shopid = intent.getStringExtra("shopid");
         tvName.setText(productname);
-        tvprice.setText(productprice);
-        tvmax.setText(productmaxsale);
-        tvmin.setText(productminsale);
-        tvdetail.setText(productdetail);
+        tvprice.setText("Rs. "+productprice);
+        tvmax.setText(productmaxsale+" (Max. Order)");
+        tvmin.setText(productminsale+" (Min. Order)");
+
+        tvdetail.setText(Html.fromHtml("<font><b>Detail: </b></font>"+productdetail));
         imgUrl = intent.getStringExtra("image");
         Glide.with(this).load(imgUrl).into(imageView);
        // mFirebaseDatabase = FirebaseDatabase.getInstance().getReferenceFromUrl("https://login-b93ab-default-rtdb.firebaseio.com/");
@@ -90,7 +100,22 @@ BottomNavigationView bottomNavigationView;
                     Toast.makeText(DetailActivity.this, "Message", Toast.LENGTH_LONG).show();
                     return true;
                 case R.id.buy:
-                    Toast.makeText(DetailActivity.this, "Buy", Toast.LENGTH_LONG).show();
+                    if (user_id.isEmpty()){
+                        Toast.makeText(DetailActivity.this, "Login Or Signup", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(DetailActivity.this,SignInActivity.class);
+                        startActivity(intent);
+                    }
+                    else {
+                        Intent intent1 = new Intent(DetailActivity.this, StartOrderActivity.class);
+                        intent1.putExtra("price", productprice);
+                        intent1.putExtra("image", imgUrl);
+                        intent1.putExtra("min", productminsale);
+                        intent1.putExtra("max", productmaxsale);
+                        intent1.putExtra("name", productname);
+                        intent1.putExtra("uid", user_id);
+                        startActivity(intent1);
+                    }
+                    //Toast.makeText(DetailActivity.this, "Buy", Toast.LENGTH_LONG).show();
                     return true;
                 case R.id.add_to_cart:
                     if (user_id.isEmpty())
@@ -120,8 +145,7 @@ BottomNavigationView bottomNavigationView;
         mFirebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //CartDataClass cartDataClass = new CartDataClass(product_id);
-                ProductDataClass user = new ProductDataClass(productname,producttype,productmompany,productprice,productminsale,productmaxsale,productquantity,productdetail,product_id, imgUrl);
+                ProductDataClass user = new ProductDataClass(productname,producttype,productmompany,productprice,productminsale,productmaxsale,productquantity,productdetail,product_id,shopid, imgUrl);
                         if (dataSnapshot.hasChild(user_id)) {
                            mFirebaseDatabase.child(user_id).child("my cart").child(product_id).setValue(user);
                             Toast.makeText(DetailActivity.this, "Add to cart Successfully", Toast.LENGTH_LONG).show();
@@ -134,5 +158,14 @@ BottomNavigationView bottomNavigationView;
                 Toast.makeText(DetailActivity.this, "Fail to Update Data." + databaseError, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

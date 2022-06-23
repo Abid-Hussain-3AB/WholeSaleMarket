@@ -40,9 +40,9 @@ public class AdapterClassProduct extends RecyclerView.Adapter<AdapterClassProduc
     public void onBindViewHolder(@NonNull AdapterClassProduct.ViewHolder holder, int position) {
         ProductDataClass productDataClass = productDataClasses.get(position);
         holder.tvPName.setText(productDataClass.getProductName());
-        holder.tvPType.setText(productDataClass.getProductType());
+        holder.tvPPrice.setText("Rs. "+productDataClass.getProductPrice());
         Glide.with(context).load(productDataClass.getImage()).into(holder.imgproducts);
-        holder.tvPQuantity.setText(productDataClass.getProductQuantity());
+        holder.tvPmin.setText(productDataClass.getProductMinSale()+" (Min. Order)");
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,6 +56,8 @@ public class AdapterClassProduct extends RecyclerView.Adapter<AdapterClassProduc
                 intent.putExtra("id", productDataClass.getProductId());
                 intent.putExtra("company",productDataClass.getProductCompany());
                 intent.putExtra("quantity",productDataClass.getProductQuantity());
+                intent.putExtra("shopid",productDataClass.getProductShopId());
+                intent.putExtra("type",productDataClass.getProductType());
                 context.startActivity(intent);
             }
         });
@@ -68,13 +70,13 @@ public class AdapterClassProduct extends RecyclerView.Adapter<AdapterClassProduc
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvPName, tvPType, tvPQuantity;
+        TextView tvPName, tvPPrice, tvPmin;
         ImageView imgproducts;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvPName = itemView.findViewById(R.id.tvProductNameB);
-            tvPType = itemView.findViewById(R.id.tvProductPrice);
-            tvPQuantity = itemView.findViewById(R.id.tvProductMOQ);
+            tvPPrice = itemView.findViewById(R.id.tvProductPrice);
+            tvPmin = itemView.findViewById(R.id.tvProductMOQ);
             imgproducts = itemView.findViewById(R.id.ImgProducts);
         }
     }
