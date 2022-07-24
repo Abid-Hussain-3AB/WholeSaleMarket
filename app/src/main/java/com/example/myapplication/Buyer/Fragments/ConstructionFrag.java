@@ -40,7 +40,8 @@ public class ConstructionFrag extends Fragment {
         recyclerView = v.findViewById(R.id.rc_construction);
         recyclerView.setHasFixedSize(true);
         arrayLists = new ArrayList<String>();
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2,RecyclerView.VERTICAL,false));        productDataClassesList = new ArrayList<>();
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2,RecyclerView.VERTICAL,false));
+        productDataClassesList = new ArrayList<>();
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("Products");
         getData();
         return v;
@@ -58,7 +59,7 @@ public class ConstructionFrag extends Fragment {
                         }
                     }
                 }
-                adapterClassProduct = new AdapterClassProduct(productDataClassesList, getContext());
+                adapterClassProduct = new AdapterClassProduct(productDataClassesList, getContext(),"Constructions");
                 recyclerView.setAdapter(adapterClassProduct);
             }
             @Override

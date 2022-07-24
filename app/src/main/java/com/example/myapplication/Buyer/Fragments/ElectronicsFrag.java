@@ -60,7 +60,7 @@ public class ElectronicsFrag extends Fragment {
                         }
                     }
                 }
-                adapterClassProduct = new AdapterClassProduct(productDataClassesList, getContext());
+                adapterClassProduct = new AdapterClassProduct(productDataClassesList, getContext(),"Electronics");
                 recyclerView.setAdapter(adapterClassProduct);
             }
             @Override

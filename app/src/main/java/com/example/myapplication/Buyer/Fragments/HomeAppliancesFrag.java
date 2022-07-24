@@ -57,7 +57,7 @@ public class HomeAppliancesFrag extends Fragment {
                         }
                     }
                 }
-                adapterClassProduct = new AdapterClassProduct(productDataClassesList, getContext());
+                adapterClassProduct = new AdapterClassProduct(productDataClassesList, getContext(),"Home Appliances");
                 recyclerView.setAdapter(adapterClassProduct);
             }
             @Override

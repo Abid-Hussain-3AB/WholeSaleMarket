@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.myapplication.AdapterClasses.AdapterClassProduct;
 import com.example.myapplication.DataClasses.ProductDataClass;
@@ -27,6 +28,7 @@ public class SearchActivity extends AppCompatActivity {
     AdapterClassProduct adapterClassProduct;
     private List<ProductDataClass> productDataClassesList;
     private List<ProductDataClass> productDataClassesListS;
+    private List<ProductDataClass> productDataClassesListempty;
     androidx.appcompat.widget.SearchView searchView;
     androidx.appcompat.widget.Toolbar toolbar;
     ProductDataClass sdc;
@@ -45,15 +47,18 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this,2,RecyclerView.VERTICAL,false));
         productDataClassesList = new ArrayList<>();
         productDataClassesListS = new ArrayList<>();
+        productDataClassesListempty = new ArrayList<>();
         toolbar = findViewById(R.id.toolbarSearch);
-        searchView = findViewById(R.id.search1);
+        searchView = findViewById(R.id.search2);
         searchView.setIconifiedByDefault(false);
         searchView.setFocusable(true);
         searchView.requestFocus();
+        adapterClassProduct = new AdapterClassProduct(productDataClassesListempty,SearchActivity.this,"");
+        recyclerView.setAdapter(adapterClassProduct);
         searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                productDataClassesListS.clear();
+              /*  productDataClassesListS.clear();
                 for (int i = 0; i<productDataClassesList.size(); i++)
                 {
                     if (productDataClassesList.get(i).getProductType().toLowerCase(Locale.ROOT).equals(query.toLowerCase(Locale.ROOT)))
@@ -61,21 +66,42 @@ public class SearchActivity extends AppCompatActivity {
                        // Toast.makeText(Activity_Settings.this, "Success", Toast.LENGTH_SHORT).show();
                         result = productDataClassesList.get(i);
                         productDataClassesListS.add(result);
-                        adapterClassProduct = new AdapterClassProduct(productDataClassesListS, SearchActivity.this);
+                        adapterClassProduct = new AdapterClassProduct(productDataClassesListS, SearchActivity.this,"");
                         recyclerView.setAdapter(adapterClassProduct);
                     }
                 }
-              return true;
-            }
 
+               */
+              return false;
+            }
             @Override
             public boolean onQueryTextChange(String newText) {
-               // adapter.getFilter().filter(newText);
+                filter(newText);
                 return false;
             }
         });
-
     }
+    private void filter(String text) {
+        ArrayList<ProductDataClass> filteredlist = new ArrayList<>();
+        for (ProductDataClass item : productDataClassesList) {
+            if (item.getProductName().toLowerCase().contains(text.toLowerCase())) {
+                filteredlist.add(item);
+            }
+        }
+        if (filteredlist.isEmpty()) {
+           // Toast.makeText(this, "No Data Found..", Toast.LENGTH_SHORT).show();
+        } else {
+            if (adapterClassProduct!=null) {
+                adapterClassProduct.filterList(filteredlist);
+            }
+            if (text.equals(""))
+            {
+                adapterClassProduct = new AdapterClassProduct(productDataClassesListempty,SearchActivity.this,"");
+                recyclerView.setAdapter(adapterClassProduct);
+            }
+        }
+    }
+
     private void getData()
     {
         mFirebaseDatabase.child("Products").addListenerForSingleValueEvent(new ValueEventListener() {

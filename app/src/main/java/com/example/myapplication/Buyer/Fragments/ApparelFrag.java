@@ -30,7 +30,6 @@ public class ApparelFrag extends Fragment {
     RecyclerView recyclerView;
     AdapterClassProduct adapterClassProduct;
     private List<ProductDataClass> productDataClassesList;
-    List<String> arrayLists;
     View v;
 
     @Override
@@ -39,9 +38,8 @@ public class ApparelFrag extends Fragment {
         v = inflater.inflate(R.layout.fragment_apparel, container, false);
         recyclerView = v.findViewById(R.id.rc_apparel);
         recyclerView.setHasFixedSize(true);
-        arrayLists = new ArrayList<String>();
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2,RecyclerView.VERTICAL,false));        productDataClassesList = new ArrayList<>();
-       // mFirebaseDatabase = FirebaseDatabase.getInstance().getReferenceFromUrl("https://login-b93ab-default-rtdb.firebaseio.com/");
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2,RecyclerView.VERTICAL,false));
+        productDataClassesList = new ArrayList<>();
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("Products");
         getData();
         return v;
@@ -59,7 +57,7 @@ public class ApparelFrag extends Fragment {
                         }
                     }
                 }
-                adapterClassProduct = new AdapterClassProduct(productDataClassesList, getContext());
+                adapterClassProduct = new AdapterClassProduct(productDataClassesList, getContext(),"Apparel");
                 recyclerView.setAdapter(adapterClassProduct);
             }
             @Override

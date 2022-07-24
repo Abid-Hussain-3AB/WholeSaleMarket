@@ -58,7 +58,7 @@ public class VehiclePartsFrag extends Fragment {
                         }
                     }
                 }
-                adapterClassProduct = new AdapterClassProduct(productDataClassesList, getContext());
+                adapterClassProduct = new AdapterClassProduct(productDataClassesList, getContext(),"VehicleParts");
                 recyclerView.setAdapter(adapterClassProduct);
             }
             @Override

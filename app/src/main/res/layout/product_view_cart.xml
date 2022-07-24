@@ -13,7 +13,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="190dp"
-        android:layout_height="278dp"
+        android:layout_height="wrap_content"
         android:background="@color/white"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="15dp"
@@ -25,6 +25,16 @@
             android:background="@color/white"
             android:orientation="vertical">
 
+            <RadioButton
+                android:id="@+id/radio_button_cart"
+                android:layout_width="27dp"
+                android:layout_height="22dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="2dp"
+                android:buttonTint="@color/black"
+                android:padding="12dp"
+                android:textSize="18sp">
+            </RadioButton>
             <ImageView
                 android:id="@+id/ImgProducts"
                 android:layout_width="match_parent"

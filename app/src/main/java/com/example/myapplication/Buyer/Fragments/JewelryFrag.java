@@ -58,7 +58,7 @@ public class JewelryFrag extends Fragment {
                         }
                     }
                 }
-                adapterClassProduct = new AdapterClassProduct(productDataClassesList, getContext());
+                adapterClassProduct = new AdapterClassProduct(productDataClassesList, getContext(),"Jewelry");
                 recyclerView.setAdapter(adapterClassProduct);
             }
             @Override

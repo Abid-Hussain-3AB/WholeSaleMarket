@@ -59,7 +59,7 @@ public class FertilizerFrag extends Fragment {
                         }
                     }
                 }
-                adapterClassProduct = new AdapterClassProduct(productDataClassesList, getContext());
+                adapterClassProduct = new AdapterClassProduct(productDataClassesList, getContext(),"Fertilizers");
                 recyclerView.setAdapter(adapterClassProduct);
             }
             @Override

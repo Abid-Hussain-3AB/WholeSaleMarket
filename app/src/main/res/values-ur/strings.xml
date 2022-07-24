@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Whole Sale Market</string>
+    <string name="home">گھر</string>
+    <string name="message">پیغام</string>
+    <string name="cart">کارٹ</string>
+    <string name="account">اکاونٹ</string>
+    <string name="thank_you">شکریہ</string>
+    <string name="check">چیک کریں</string>
+    <string name="thanks">شکریہ شکریہ</string>
+    <string name="account_information">اکاؤنٹ کی معلومات</string>
+    <string name="language">زبان</string>
+    <string name="help">مدد</string>
+    <string name="logout">لاگ آوٹ</string>
+    <string name="no_cart">کوئی کارٹ نہیں</string>
+    <string name="delete">حذف کریں</string>
+    <string name="all_products">تمام مصنوعات</string>
+    <string name="electronics">الیکٹرانکس</string>
+    <string name="groceries">گروسری</string>
+    <string name="home_appliances">گھر کے سامان</string>
+    <string name="cosmetics">کاسمیٹکس</string>
+    <string name="jewelry">زیورات</string>
+    <string name="apparel">ملبوسات</string>
+    <string name="vehicle_parts">گاڑی کے پرزے</string>
+    <string name="constructions">تعمیرات</string>
+    <string name="fertilizers">کھاد</string>
+    <string name="rss">روپے"</string>
+    <string name="min_order">  (کم از کم آرڈر)  </string>
+    <string name="product_detail">مصنوعات کی تفصیل</string>
+    <string name="rs">روپے"</string>
+    <string name="min"> (کم از کم آرڈر) </string>
+    <string name="max"> (زیادہ سے زیادہ آرڈر)  </string>
+    <string name="store">اسٹور</string>
+    <string name="chat">پیغام</string>
+    <string name="buy_now">ابھی خریدیں</string>
+    <string name="add_to_cart">کارٹ میں شامل کریں</string>
+</resources>
