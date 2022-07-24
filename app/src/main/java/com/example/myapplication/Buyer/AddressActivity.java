@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.myapplication.AdapterClasses.ClickListenerAddress;
 import com.example.myapplication.DataClasses.BuyerAddressDataClass;
 import com.example.myapplication.DataClasses.ProductDataClass;
 import com.example.myapplication.R;
@@ -28,6 +29,7 @@ public class AddressActivity extends AppCompatActivity {
     Button btnSave;
     private DatabaseReference mFirebaseDatabase;
     String user_id;
+    ClickListenerAddress clickListenerAddress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,12 +53,12 @@ public class AddressActivity extends AppCompatActivity {
                 Address = etAddress.getText().toString();
                 AddAddress();
                 Intent intent1 = new Intent(AddressActivity.this,PurchaseProductActivity.class);
-                intent1.putExtra("Name",Name);
-                intent1.putExtra("Phone",Phone);
-                intent1.putExtra("Province",Province);
-                intent1.putExtra("City",City);
-                intent1.putExtra("Address",Address);
-                startActivityForResult(intent1,0);
+             //   intent1.putExtra("Name",Name);
+              //  intent1.putExtra("Phone",Phone);
+               // intent1.putExtra("Province",Province);
+               // intent1.putExtra("City",City);
+               // intent1.putExtra("Address",Address);
+               startActivity(intent1);
                 finish();
                // Toast.makeText(AddressActivity.this, user_id, Toast.LENGTH_SHORT).show();
             }

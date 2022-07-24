@@ -5,22 +5,22 @@
     <item
         android:id="@+id/store"
         android:iconTint="@color/black"
-        android:title="Store"
+        android:title="@string/store"
         android:icon="@drawable/ic_store"/>
 
     <item
         android:id="@+id/chat1"
-        android:title="Chat"
+        android:title="@string/chat"
         android:iconTint="@color/black"
         android:icon="@drawable/ic_chat1"/>
     <item
         android:id="@+id/buy"
-        android:title="Buy Now"
+        android:title="@string/buy_now"
         android:iconTint="@color/teal_700">
     </item>
     <item
         android:id="@+id/add_to_cart"
         android:icon="@android:drawable/ic_menu_add"
         android:iconTint="@color/teal_700"
-        android:title="Add to Cart"></item>
+        android:title="@string/add_to_cart"></item>
 </menu>

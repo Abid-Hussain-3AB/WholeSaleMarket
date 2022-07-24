@@ -24,6 +24,8 @@ public class StartOrderActivity extends AppCompatActivity {
     String Price, Min, Max, Image,name;
     String replacePrice;
     String uid;
+    String product_id;
+    String shop_id;
     SharedPreferences sharedPreferences;
     public static final String filename = "order";
     public static final String TotalPrice = "TotalPrice";
@@ -32,6 +34,8 @@ public class StartOrderActivity extends AppCompatActivity {
     public static final String ProductImage = "ProductImage";
     public static final String ProductPrice = "ProductPrice";
     public static final String UserId = "UserId";
+    public static final String ProductId = "ProductId";
+    public static final String ShopId = "ShopId";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +48,8 @@ public class StartOrderActivity extends AppCompatActivity {
         Image = intent.getStringExtra("image");
         name = intent.getStringExtra("name");
         uid = intent.getStringExtra("uid");
+        product_id = intent.getStringExtra("product_id");
+        shop_id = intent.getStringExtra("shop_id");
         imageView = findViewById(R.id.ImgProductSt);
         price = findViewById(R.id.tvProductPriceSt);
         min = findViewById(R.id.tvProductMinSt);
@@ -54,7 +60,6 @@ public class StartOrderActivity extends AppCompatActivity {
         max.setText("Max: "+ Max);
         Glide.with(this).load(Image).into(imageView);
         sharedPreferences = getSharedPreferences(filename, Context.MODE_PRIVATE);
-
     }
     public void increaseInteger(View view) {
         if (minteger<Integer.parseInt(Max))
@@ -95,20 +100,29 @@ public class StartOrderActivity extends AppCompatActivity {
         totalPrice = number*p;
         TextView displayInteger = (TextView) findViewById(R.id.grandTotalSt);
         displayInteger.setText("Product Value (" +" 1" +" type "+number+" items )        Rs. " + totalPrice);
-        startOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent1 = new Intent(StartOrderActivity.this,PurchaseProductActivity.class);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putInt(TotalPrice,totalPrice);
-                editor.putInt(TotalQuantity,totalQuantity);
-                editor.putString(ProductName,name);
-                editor.putString(ProductImage,Image);
-                editor.putString(ProductPrice,Price);
-                editor.putString(UserId,uid);
-                editor.commit();
-                startActivity(intent1);
-            }
-        });
+
+            startOrder.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (number<Integer.parseInt(Min))
+                    {
+                        Toast.makeText(StartOrderActivity.this, "Please Order at least required Minimum Quantity!", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        Intent intent1 = new Intent(StartOrderActivity.this, PurchaseProductActivity.class);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putInt(TotalPrice, totalPrice);
+                        editor.putInt(TotalQuantity, totalQuantity);
+                        editor.putString(ProductName, name);
+                        editor.putString(ProductImage, Image);
+                        editor.putString(ProductPrice, Price);
+                        editor.putString(UserId, uid);
+                        editor.putString(ProductId, product_id);
+                        editor.putString(ShopId, shop_id);
+                        editor.commit();
+                        startActivity(intent1);
+                    }
+                }
+            });
     }
 }

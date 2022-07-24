@@ -56,7 +56,7 @@ public class GroceriesFrag extends Fragment {
                         }
                     }
                 }
-                adapterClassProduct = new AdapterClassProduct(productDataClassesList, getContext());
+                adapterClassProduct = new AdapterClassProduct(productDataClassesList, getContext(),"Groceries");
                 recyclerView.setAdapter(adapterClassProduct);
             }
             @Override

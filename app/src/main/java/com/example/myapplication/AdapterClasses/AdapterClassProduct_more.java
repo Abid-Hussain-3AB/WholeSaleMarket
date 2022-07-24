@@ -6,53 +6,40 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.myapplication.Buyer.DetailActivity;
 import com.example.myapplication.DataClasses.ProductDataClass;
 import com.example.myapplication.R;
-import com.example.myapplication.Buyer.DetailActivity;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-public class AdapterClassProduct extends RecyclerView.Adapter<AdapterClassProduct.ViewHolder>{
+public class AdapterClassProduct_more extends RecyclerView.Adapter<AdapterClassProduct_more.ViewHolder>{
     private List<ProductDataClass> productDataClasses;
     Context context;
-    String category;
+   String category;
 
-    public AdapterClassProduct(List<ProductDataClass> productDataClasses, Context context, String category ) {
+    public AdapterClassProduct_more(List<ProductDataClass> productDataClasses, Context context, String category ) {
         this.productDataClasses = productDataClasses;
         this.context = context;
         this.category = category;
     }
-    @SuppressLint("NotifyDataSetChanged")
-    public void filterList(ArrayList<ProductDataClass> filterllist) {
-        // below line is to add our filtered
-        // list in our course array list.
-        productDataClasses = filterllist;
-        // below line is to notify our adapter
-        // as change in recycler view data.
-        notifyDataSetChanged();
-    }
+
     @NonNull
     @Override
-    public AdapterClassProduct.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_view, parent, false);
-        return new AdapterClassProduct.ViewHolder(view);
+    public AdapterClassProduct_more.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_view_more, parent, false);
+        return new AdapterClassProduct_more.ViewHolder(view);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull AdapterClassProduct.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterClassProduct_more.ViewHolder holder, int position) {
         ProductDataClass productDataClass = productDataClasses.get(position);
         holder.tvPName.setText(productDataClass.getProductName());
         holder.tvPPrice.setText(context.getString(R.string.rss)+" "+productDataClass.getProductPrice());
@@ -84,6 +71,7 @@ public class AdapterClassProduct extends RecyclerView.Adapter<AdapterClassProduc
     public int getItemCount() {
         return productDataClasses.size();
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvPName, tvPPrice, tvPmin;
         ImageView imgproducts;

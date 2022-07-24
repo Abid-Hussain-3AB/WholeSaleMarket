@@ -58,7 +58,7 @@ public class CosmeticsFrag extends Fragment {
                         }
                     }
                 }
-                adapterClassProduct = new AdapterClassProduct(productDataClassesList, getContext());
+                adapterClassProduct = new AdapterClassProduct(productDataClassesList, getContext(),"Cosmetics");
                 recyclerView.setAdapter(adapterClassProduct);
             }
             @Override

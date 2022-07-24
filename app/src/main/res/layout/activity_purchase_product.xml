@@ -192,8 +192,7 @@
             android:layout_marginBottom="30dp"
             android:background="#EBD16951"
             android:gravity="center"
-
-            android:text="Proceed to Pay"
+            android:text="Confirm Order"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@android:color/white"></TextView>
     </LinearLayout>

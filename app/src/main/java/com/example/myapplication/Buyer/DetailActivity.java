@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -21,9 +23,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.myapplication.AdapterClasses.AdapterClassProduct;
+import com.example.myapplication.AdapterClasses.AdapterClassProduct_more;
+import com.example.myapplication.AdapterClasses.ItemClickListenerCart;
+import com.example.myapplication.AdapterClasses.ItemClickListenerCartAdd;
 import com.example.myapplication.DataClasses.ProductDataClass;
 import com.example.myapplication.Other.SignInActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.Settings.AppCompact;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,7 +38,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class DetailActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class DetailActivity extends AppCompact {
 TextView tvName, tvprice, tvmax, tvmin, tvdetail;
 ImageView imageView;
 String imgUrl;
@@ -42,10 +52,17 @@ BottomNavigationView bottomNavigationView;
     public static final String password = "password";
     String product_id = "";
     String user_id = "";
-    String productname, producttype,productmompany, productprice, productminsale, productmaxsale, productquantity, productdetail,shopid;
+    String productname, producttype,productmompany, productprice, productminsale, productmaxsale, productquantity, productdetail,shopid,category;
     private DatabaseReference mFirebaseDatabase;
-
+    private DatabaseReference mFirebaseDatabase1;
+    RecyclerView recyclerView;
+    AdapterClassProduct_more adapterClassProduct;
+    private List<ProductDataClass> productDataClassesList1;
     SharedPreferences sharedPreferences;
+    public static final String Cart = "cart";
+    public static final String CartNumber = "CartNumber";
+    SharedPreferences sharedPreferences1;
+    String cart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,9 +71,14 @@ BottomNavigationView bottomNavigationView;
         if (sharedPreferences.contains(userName)){
             user_id =sharedPreferences.getString(userName,"");
         }
+        sharedPreferences1 = getSharedPreferences(Cart,Context.MODE_PRIVATE);
+        if (sharedPreferences1.contains(Cart)){
+          cart =  sharedPreferences1.getString(CartNumber,"");
+        }
+        Toast.makeText(this, "Cart="+cart, Toast.LENGTH_SHORT).show();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Product Detail");
+        getSupportActionBar().setTitle(R.string.product_detail);
         bottomNavigationView = findViewById(R.id.bottom_navigationD);
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
         tvName = findViewById(R.id.tvProductNameD);
@@ -76,16 +98,23 @@ BottomNavigationView bottomNavigationView;
         productquantity = intent.getStringExtra("quantity");
         productdetail = intent.getStringExtra("detail");
         shopid = intent.getStringExtra("shopid");
+        category = intent.getStringExtra("category");
         tvName.setText(productname);
-        tvprice.setText("Rs. "+productprice);
-        tvmax.setText(productmaxsale+" (Max. Order)");
-        tvmin.setText(productminsale+" (Min. Order)");
-
+        tvprice.setText(getString(R.string.rs)+productprice);
+        tvmax.setText(productmaxsale+getString(R.string.min));
+        tvmin.setText(productminsale+getString(R.string.max));
         tvdetail.setText(Html.fromHtml("<font><b>Detail: </b></font>"+productdetail));
         imgUrl = intent.getStringExtra("image");
         Glide.with(this).load(imgUrl).into(imageView);
-       // mFirebaseDatabase = FirebaseDatabase.getInstance().getReferenceFromUrl("https://login-b93ab-default-rtdb.firebaseio.com/");
+        recyclerView = findViewById(R.id.rc_detail);
+        productDataClassesList1 = new ArrayList<>();
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new GridLayoutManager(this,2,RecyclerView.VERTICAL,false));
+        // mFirebaseDatabase = FirebaseDatabase.getInstance().getReferenceFromUrl("https://login-b93ab-default-rtdb.firebaseio.com/");
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("User");
+        mFirebaseDatabase1 = FirebaseDatabase.getInstance().getReference("Products");
+        getData(category);
+
     }
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @SuppressLint("NonConstantResourceId")
@@ -113,6 +142,8 @@ BottomNavigationView bottomNavigationView;
                         intent1.putExtra("max", productmaxsale);
                         intent1.putExtra("name", productname);
                         intent1.putExtra("uid", user_id);
+                        intent1.putExtra("product_id",product_id);
+                        intent1.putExtra("shop_id",shopid);
                         startActivity(intent1);
                     }
                     //Toast.makeText(DetailActivity.this, "Buy", Toast.LENGTH_LONG).show();
@@ -132,13 +163,6 @@ BottomNavigationView bottomNavigationView;
             return false;
         }
     };
-    private void loadFragment(Fragment fragment) {
-        // load fragment
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_container, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
 
     public void AddCart()
     {
@@ -149,6 +173,7 @@ BottomNavigationView bottomNavigationView;
                         if (dataSnapshot.hasChild(user_id)) {
                            mFirebaseDatabase.child(user_id).child("my cart").child(product_id).setValue(user);
                             Toast.makeText(DetailActivity.this, "Add to cart Successfully", Toast.LENGTH_LONG).show();
+                            bottomNavigationView.getOrCreateBadge(R.id.add_to_cart).setNumber(1);
                         } else {
                             Toast.makeText(DetailActivity.this, "Not Added", Toast.LENGTH_LONG).show();
                         }
@@ -156,6 +181,33 @@ BottomNavigationView bottomNavigationView;
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(DetailActivity.this, "Fail to Update Data." + databaseError, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    private void getData(String ct)
+    {
+        if (ct.equals(""))
+        {
+            ct = "Apparel";
+        }
+        String finalCt = ct;
+        mFirebaseDatabase1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                    if (ds.hasChild(finalCt)) {
+                        for (DataSnapshot dataSnapshot1 : ds.child(finalCt).getChildren()) {
+                            ProductDataClass sdc = dataSnapshot1.getValue(ProductDataClass.class);
+                            productDataClassesList1.add(sdc);
+                        }
+                    }
+                }
+                adapterClassProduct = new AdapterClassProduct_more(productDataClassesList1, DetailActivity.this,category);
+                recyclerView.setAdapter(adapterClassProduct);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
     }

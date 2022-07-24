@@ -21,7 +21,7 @@
             android:focusableInTouchMode="true"
             android:background="@color/black"
             app:queryHint="Mobiles"
-            android:id="@+id/search1">
+            android:id="@+id/search2">
         </androidx.appcompat.widget.SearchView>
 
     </androidx.appcompat.widget.Toolbar>

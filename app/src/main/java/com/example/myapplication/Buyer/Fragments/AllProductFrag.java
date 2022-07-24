@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.myapplication.AdapterClasses.AdapterClassProduct;
 import com.example.myapplication.DataClasses.ProductDataClass;
@@ -60,8 +61,7 @@ public class AllProductFrag extends Fragment {
                         }
                     }
                 }
-
-                adapterClassProduct = new AdapterClassProduct(productDataClassesList, getContext());
+                adapterClassProduct = new AdapterClassProduct(productDataClassesList, getContext(),"");
                 recyclerView.setAdapter(adapterClassProduct);
             }
 

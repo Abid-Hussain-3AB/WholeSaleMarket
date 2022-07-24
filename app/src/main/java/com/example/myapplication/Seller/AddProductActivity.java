@@ -46,6 +46,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AddProductActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     EditText etproductname, etproducttype,etproductmompany, etproductprice, etminsale, etmaxsale, etproductquantity,etproductdetail;
@@ -120,38 +122,62 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         btnaddproduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if ((TextUtils.isEmpty(etproductname.getText().toString()))) {
+               String name = etproductname.getText().toString();
+                String type = etproducttype.getText().toString();
+                String company = etproductmompany.getText().toString();
+                String price = etproductprice.getText().toString();
+                String min = etminsale.getText().toString();
+                String max = etmaxsale.getText().toString();
+                String quantity = etproductquantity.getText().toString();
+                String detail = etproductdetail.getText().toString();
+                if (name.isEmpty())
+                {
                     Toast.makeText(AddProductActivity.this, "Please enter Product Name .", Toast.LENGTH_LONG).show();
                 }
-                else if ((TextUtils.isEmpty(etproducttype.getText().toString()))){
+                else if (type.isEmpty()) {
                     Toast.makeText(AddProductActivity.this, "Please enter Product Type.", Toast.LENGTH_LONG).show();
                 }
-                else if ((TextUtils.isEmpty(etproductmompany.getText().toString()))){
+                else if (company.isEmpty()) {
                     Toast.makeText(AddProductActivity.this, "Please enter Product Company.", Toast.LENGTH_LONG).show();
                 }
-                else if ((TextUtils.isEmpty(etproductprice.getText().toString()))){
+                else if (price.isEmpty()) {
                     Toast.makeText(AddProductActivity.this, "Please enter Product Price.", Toast.LENGTH_LONG).show();
                 }
-                else if ((TextUtils.isEmpty(etminsale.getText().toString()))){
+                else if (min.isEmpty()) {
                     Toast.makeText(AddProductActivity.this, "Please enter Product Minimum For Sale.", Toast.LENGTH_LONG).show();
                 }
-                else if ((TextUtils.isEmpty(etmaxsale.getText().toString()))){
+                else if (max.isEmpty()) {
                     Toast.makeText(AddProductActivity.this, "Please enter Product Maximum For Sale.", Toast.LENGTH_LONG).show();
                 }
-                else if ((TextUtils.isEmpty(etproductquantity.getText().toString())))
-                {
+                else if (quantity.isEmpty()) {
                     Toast.makeText(AddProductActivity.this, "Please enter Product Quantity.", Toast.LENGTH_LONG).show();
                 }
-                else if ((TextUtils.isEmpty(etproductdetail.getText().toString()))){
+                else if (detail.isEmpty()) {
                     Toast.makeText(AddProductActivity.this, "Please enter Product Detail.", Toast.LENGTH_LONG).show();
                 }
-                else if (imageFileName.isEmpty())
-                {
-                    Toast.makeText(AddProductActivity.this, "Please Choose Images.", Toast.LENGTH_LONG).show();
-                }
                 else {
-                    uploadImageToFirebase(imageFileName, uniqueID, contentUri);
-                    finish();
+                    Pattern pattern = Pattern.compile("[^0-9]");
+                    Matcher matcher1 = pattern.matcher(price);
+                    Matcher matcher2 = pattern.matcher(min);
+                    Matcher matcher3 = pattern.matcher(max);
+                    Matcher matcher4 = pattern.matcher(quantity);
+                    boolean isStringContainsSpecialCharacter = matcher1.find();
+                    boolean isMinContainsSpecialCharacter = matcher2.find();
+                    boolean isMaxContainsSpecialCharacter = matcher3.find();
+                    boolean isQuantityContainsSpecialCharacter = matcher4.find();
+                        if ( isStringContainsSpecialCharacter || Integer.parseInt(price) <= 0) {
+                        Toast.makeText(AddProductActivity.this, "Please check Product Price.", Toast.LENGTH_LONG).show();
+                    } else if (isMinContainsSpecialCharacter || isMaxContainsSpecialCharacter || Integer.parseInt(min) <= 0 || Integer.parseInt(max) < Integer.parseInt(min)) {
+                        Toast.makeText(AddProductActivity.this, "Please check Product Minimum or Maximum field.", Toast.LENGTH_LONG).show();
+                    } else if (isQuantityContainsSpecialCharacter ||  Integer.parseInt(quantity)<Integer.parseInt(max)) {
+                        Toast.makeText(AddProductActivity.this, "Please check Product Quantity field.", Toast.LENGTH_LONG).show();
+                    }  else if (imageFileName.isEmpty()) {
+                        Toast.makeText(AddProductActivity.this, "Please Choose Images.", Toast.LENGTH_LONG).show();
+                   }
+                  else {
+                          uploadImageToFirebase(imageFileName, uniqueID, contentUri);
+                          finish();
+                    }
                 }
             }
         });
@@ -174,20 +200,19 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         String max = etmaxsale.getText().toString();
         String quantity = etproductquantity.getText().toString();
         String detail = etproductdetail.getText().toString();
-        mFirebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ProductDataClass user = new ProductDataClass(name,type,company,price,min,max,quantity,detail,uniqueID,str,uri1);
-                mFirebaseDatabase.child(str).child(productTpe).child(uniqueID).setValue(user);
-                Toast.makeText(AddProductActivity.this, "Data Added", Toast.LENGTH_SHORT).show();
-            }
+            mFirebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    ProductDataClass user = new ProductDataClass(name, type, company, price, min, max, quantity, detail, uniqueID, str, uri1);
+                    mFirebaseDatabase.child(str).child(productTpe).child(uniqueID).setValue(user);
+                    Toast.makeText(AddProductActivity.this, "Data Added", Toast.LENGTH_SHORT).show();
+                }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(AddProductActivity.this, "Fail to Add Data " + databaseError, Toast.LENGTH_SHORT).show();
-            }
-        });
-
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(AddProductActivity.this, "Fail to Add Data " + databaseError, Toast.LENGTH_SHORT).show();
+                }
+            });
     }
 
     private void askCameraPermission() {

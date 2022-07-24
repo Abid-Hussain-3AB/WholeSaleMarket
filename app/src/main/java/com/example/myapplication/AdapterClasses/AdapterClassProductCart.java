@@ -6,9 +6,9 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,48 +16,44 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.myapplication.Buyer.DetailActivity;
 import com.example.myapplication.DataClasses.ProductDataClass;
 import com.example.myapplication.R;
-import com.example.myapplication.Buyer.DetailActivity;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-public class AdapterClassProduct extends RecyclerView.Adapter<AdapterClassProduct.ViewHolder>{
+public class AdapterClassProductCart extends RecyclerView.Adapter<AdapterClassProductCart.ViewHolder>{
     private List<ProductDataClass> productDataClasses;
     Context context;
+    ItemClickListener itemClickListener;
+    int selectedPosition = -1;
     String category;
 
-    public AdapterClassProduct(List<ProductDataClass> productDataClasses, Context context, String category ) {
+
+    public AdapterClassProductCart(List<ProductDataClass> productDataClasses, Context context, ItemClickListener itemClickListener,String category) {
         this.productDataClasses = productDataClasses;
         this.context = context;
+        this.itemClickListener = itemClickListener;
         this.category = category;
     }
-    @SuppressLint("NotifyDataSetChanged")
-    public void filterList(ArrayList<ProductDataClass> filterllist) {
-        // below line is to add our filtered
-        // list in our course array list.
-        productDataClasses = filterllist;
-        // below line is to notify our adapter
-        // as change in recycler view data.
-        notifyDataSetChanged();
-    }
+
     @NonNull
     @Override
-    public AdapterClassProduct.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_view, parent, false);
-        return new AdapterClassProduct.ViewHolder(view);
+    public AdapterClassProductCart.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_view_cart, parent, false);
+        return new AdapterClassProductCart.ViewHolder(view);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull AdapterClassProduct.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterClassProductCart.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         ProductDataClass productDataClass = productDataClasses.get(position);
         holder.tvPName.setText(productDataClass.getProductName());
-        holder.tvPPrice.setText(context.getString(R.string.rss)+" "+productDataClass.getProductPrice());
+        holder.tvPPrice.setText("Rs. "+productDataClass.getProductPrice());
         Glide.with(context).load(productDataClass.getImage()).into(holder.imgproducts);
-        holder.tvPmin.setText(productDataClass.getProductMinSale()+context.getString(R.string.min_order));
+        holder.tvPmin.setText(productDataClass.getProductMinSale()+" (Min. Order)");
+        holder.radioButton.setChecked(selectedPosition == position);
+       // holder.radioButton.setChecked(lastSelectedPosition == position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +73,15 @@ public class AdapterClassProduct extends RecyclerView.Adapter<AdapterClassProduc
                 context.startActivity(intent);
             }
         });
+       holder.radioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedPosition = position;
+                notifyDataSetChanged();
+                //Toast.makeText(context, productDataClass.getProductName(), Toast.LENGTH_SHORT).show();
+                itemClickListener.onClick(productDataClass.getProductId(),position);
+            }
+        });
 
     }
 
@@ -84,15 +89,18 @@ public class AdapterClassProduct extends RecyclerView.Adapter<AdapterClassProduc
     public int getItemCount() {
         return productDataClasses.size();
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvPName, tvPPrice, tvPmin;
         ImageView imgproducts;
+        RadioButton radioButton;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvPName = itemView.findViewById(R.id.tvProductNameB);
             tvPPrice = itemView.findViewById(R.id.tvProductPrice);
             tvPmin = itemView.findViewById(R.id.tvProductMOQ);
             imgproducts = itemView.findViewById(R.id.ImgProducts);
+            radioButton = itemView.findViewById(R.id.radio_button_cart);
         }
     }
 }

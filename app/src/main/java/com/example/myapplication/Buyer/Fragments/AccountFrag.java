@@ -25,7 +25,7 @@ import com.example.myapplication.Settings.SettingActivity;
 
 public class AccountFrag extends Fragment {
     View v;
-    TextView account, signout;
+    TextView account;
     ImageView setting;
     String Fname="";
     Toolbar toolbar;
@@ -61,28 +61,12 @@ public AccountFrag()
         }
         account = v.findViewById(R.id.add_account);
         setting = v.findViewById(R.id.setting);
-        signout = v.findViewById(R.id.signOut);
-        signout.setVisibility(View.GONE);
         account.setText(Fname);
         if (Fname.isEmpty())
         {
             account.setText("SignIn or Register");
         }
-        else {
-            signout.setVisibility(View.VISIBLE);
-        }
-        signout.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("CommitPrefEdits")
-            @Override
-            public void onClick(View view) {
-                if (sharedPreferences.contains(userName)){
-                    sharedPreferences.edit().clear().commit();
-                }
-                Fname="";
-                signout.setVisibility(View.GONE);
-                account.setText("SignIn or Register");
-            }
-        });
+
             account.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

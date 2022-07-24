@@ -16,36 +16,57 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.myapplication.AdapterClasses.AdapterClassProduct;
 import com.example.myapplication.AdapterClasses.AdapterFragments;
+import com.example.myapplication.AdapterClasses.ItemClickListener;
+import com.example.myapplication.AdapterClasses.ItemClickListenerCart;
+import com.example.myapplication.AdapterClasses.ItemClickListenerCartAdd;
 import com.example.myapplication.Buyer.Fragments.AccountFrag;
 import com.example.myapplication.Buyer.Fragments.CartFrag;
+import com.example.myapplication.DataClasses.ProductDataClass;
 import com.example.myapplication.Other.SignInActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.Settings.AppCompact;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
-public class BuyerActivity extends AppCompatActivity {
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+public class BuyerActivity extends AppCompact {
     Toolbar toolbar;
     TabLayout tabLayout;
     ViewPager viewPager;
     AdapterFragments fragmentAdapter;
     BottomNavigationView bottomNavigationView;
+    private DatabaseReference mFirebaseDatabase;
     public static final String filename = "login";
     public static final String name = "Abid";
     public static final String userName = "username";
     public static final String password = "password";
     ImageButton searchView;
     SharedPreferences sharedPreferences;
+    public static final String Cart = "cart";
+    public static final String CartNumber = "CartNumber";
+    SharedPreferences sharedPreferences1;
     String Uname="";
     String Uid ="";
+    int total=0;
+    ItemClickListenerCart itemClickListenerCart;
+    ItemClickListenerCartAdd itemClickListenerCartAdd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer);
+        mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("User");
         sharedPreferences = getSharedPreferences(filename, Context.MODE_PRIVATE);
         if (sharedPreferences.contains(userName)){
             Uname =sharedPreferences.getString(name,"");
             Uid =sharedPreferences.getString(userName,"");
         }
+        sharedPreferences1 = getSharedPreferences(Cart, Context.MODE_PRIVATE);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
         toolbar = findViewById(R.id.toolBar);
@@ -53,16 +74,16 @@ public class BuyerActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewpager);
         setSupportActionBar(toolbar);
         searchView = findViewById(R.id.btnSearch);
-        tabLayout.addTab(tabLayout.newTab().setText("All Products"));
-        tabLayout.addTab(tabLayout.newTab().setText("Electronics"));
-        tabLayout.addTab(tabLayout.newTab().setText("Groceries"));
-        tabLayout.addTab(tabLayout.newTab().setText("Home Appliances"));
-        tabLayout.addTab(tabLayout.newTab().setText("Cosmetics"));
-        tabLayout.addTab(tabLayout.newTab().setText("Jewelry"));
-        tabLayout.addTab(tabLayout.newTab().setText("Apparel"));
-        tabLayout.addTab(tabLayout.newTab().setText("VehicleParts"));
-        tabLayout.addTab(tabLayout.newTab().setText("Constructions"));
-        tabLayout.addTab(tabLayout.newTab().setText("Fertilizers"));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.all_products));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.electronics));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.groceries));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.home_appliances));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.cosmetics));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.jewelry));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.apparel));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.vehicle_parts));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.constructions));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.fertilizers));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         fragmentAdapter = new AdapterFragments(getSupportFragmentManager(),tabLayout.getTabCount());
         viewPager.setAdapter(fragmentAdapter);
@@ -90,6 +111,43 @@ public class BuyerActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        if (Uid.isEmpty())
+        {
+            bottomNavigationView.getOrCreateBadge(R.id.cart).setNumber(0);
+        }
+        else {
+            mFirebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.hasChild(Uid)) {
+                       // for (DataSnapshot dataSnapshot1 : dataSnapshot.child(Uid).child("my cart").getChildren()) {
+                         //   ProductDataClass productDataClass = dataSnapshot1.getValue(ProductDataClass.class);
+                           total = (int) dataSnapshot.child(Uid).child("my cart").getChildrenCount();
+                           bottomNavigationView.getOrCreateBadge(R.id.cart).setNumber(total);
+                           SharedPreferences.Editor editor = sharedPreferences1.edit();
+                           editor.putString(CartNumber,"Abid");
+                           editor.commit();
+                       // }
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                  //  Toast.makeText(v.getContext(), "Fail to Update Data." + databaseError, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        itemClickListenerCart = new ItemClickListenerCart() {
+            @Override
+            public void onClick(String s) {
+                bottomNavigationView.getOrCreateBadge(R.id.cart).setNumber(total-1);
+            }
+        };
+        itemClickListenerCartAdd = new ItemClickListenerCartAdd() {
+            @Override
+            public void onClick(String s) {
+                bottomNavigationView.getOrCreateBadge(R.id.cart).setNumber(total+1);
+            }
+        };
     }
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @SuppressLint("NonConstantResourceId")
@@ -117,8 +175,9 @@ public class BuyerActivity extends AppCompatActivity {
                         finish();
                     }
                     else {
+                      //  bottomNavigationView.getOrCreateBadge(R.id.cart).setNumber(1);
                         viewPager.removeAllViews();
-                        fragment = new CartFrag(Uid);
+                        fragment = new CartFrag(Uid,itemClickListenerCart);
                         loadFragment(fragment);
                     }
                     return true;

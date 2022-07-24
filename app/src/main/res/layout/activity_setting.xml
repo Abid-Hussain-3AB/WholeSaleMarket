@@ -1,9 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/browser_actions_bg_grey"
+    android:orientation="vertical"
     tools:context=".Settings.SettingActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/btnAccount_Information"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:text="@string/account_information"
+        android:gravity="start"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnLanguage"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:gravity="start"
+        android:text="@string/language"
+        tools:ignore="MissingConstraints" />
+    <Button
+        android:id="@+id/btnHelp"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:gravity="start"
+        android:text="@string/help"
+        tools:ignore="MissingConstraints" />
+    <Button
+        android:id="@+id/btnLogOut"
+        android:textColor="@color/teal_700"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="@string/logout"
+        tools:ignore="MissingConstraints" />
+</androidx.appcompat.widget.LinearLayoutCompat>
