@@ -29,7 +29,7 @@ public class AllProductFrag extends Fragment {
     private DatabaseReference mFirebaseDatabase;
     RecyclerView recyclerView;
     AdapterClassProduct adapterClassProduct;
-    private List<ProductDataClass> productDataClassesList;
+    public static List<ProductDataClass> productDataClassesList;
     List<String> arrayLists;
     View v;
 

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,8 +17,10 @@ import com.bumptech.glide.Glide;
 import com.example.myapplication.DataClasses.ProductDataClass;
 import com.example.myapplication.Seller.EditDelProductActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.Seller.SellerActivity;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterClassOwner extends RecyclerView.Adapter<AdapterClassOwner.ViewHolder> {
@@ -45,17 +48,23 @@ public class AdapterClassOwner extends RecyclerView.Adapter<AdapterClassOwner.Vi
         holder.tvPType.setText("Product Type: " + productDataClass.getProductType());
         Glide.with(context).load(productDataClass.getImage()).into(holder.imgproducts);
         holder.tvPQuantity.setText("Product Quantity: " + productDataClass.getProductQuantity());
+        List<String> s = new ArrayList<>();
+        s.addAll(SellerActivity.st);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, EditDelProductActivity.class);
-                intent.putExtra("image",productDataClass.getImage());
-                intent.putExtra("ID", productDataClass.getProductId());
-                intent.putExtra("shopid",productDataClass.getProductShopId());
-                context.startActivity(intent);
+                if (s.contains(productDataClass.getProductId())) {
+                    Toast.makeText(context, "You Cant Edit or Dell This Product", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent intent = new Intent(context, EditDelProductActivity.class);
+                    intent.putExtra("image", productDataClass.getImage());
+                    intent.putExtra("ID", productDataClass.getProductId());
+                    intent.putExtra("shopid", productDataClass.getProductShopId());
+                    context.startActivity(intent);
+                }
             }
         });
-
     }
 
     @Override

@@ -34,4 +34,6 @@
     <string name="chat">پیغام</string>
     <string name="buy_now">ابھی خریدیں</string>
     <string name="add_to_cart">کارٹ میں شامل کریں</string>
+    <string name="start_order">آرڑر اسٹارٹ کریں</string>
+    <string name="select_quantity">مقدار چنیں </string>
 </resources>

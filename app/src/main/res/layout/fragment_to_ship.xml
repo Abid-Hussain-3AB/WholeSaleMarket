@@ -3,10 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin.Fragments.ApprovedShops">
+    android:background="@color/white"
+    tools:context=".Buyer.Fragments.ToShipFrag">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rc_approved_shops"
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:textColor="@color/black"
+        android:text="Ship" />
+
 </FrameLayout>

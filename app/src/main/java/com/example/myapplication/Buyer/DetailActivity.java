@@ -1,9 +1,7 @@
 package com.example.myapplication.Buyer;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,22 +9,15 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Html;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.StyleSpan;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.myapplication.AdapterClasses.AdapterClassProduct;
 import com.example.myapplication.AdapterClasses.AdapterClassProduct_more;
-import com.example.myapplication.AdapterClasses.ItemClickListenerCart;
-import com.example.myapplication.AdapterClasses.ItemClickListenerCartAdd;
 import com.example.myapplication.DataClasses.ProductDataClass;
 import com.example.myapplication.Other.SignInActivity;
 import com.example.myapplication.R;
@@ -41,7 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailActivity extends AppCompact {
+public class DetailActivity extends  AppCompact{
 TextView tvName, tvprice, tvmax, tvmin, tvdetail;
 ImageView imageView;
 String imgUrl;
@@ -75,7 +66,7 @@ BottomNavigationView bottomNavigationView;
         if (sharedPreferences1.contains(Cart)){
           cart =  sharedPreferences1.getString(CartNumber,"");
         }
-        Toast.makeText(this, "Cart="+cart, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Cart="+cart, Toast.LENGTH_SHORT).show();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle(R.string.product_detail);
@@ -120,9 +111,8 @@ BottomNavigationView bottomNavigationView;
         @SuppressLint("NonConstantResourceId")
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment fragment;
             switch (item.getItemId()){
-                case R.id.store:
+                case R.id.store1:
                     Toast.makeText(DetailActivity.this, "Store", Toast.LENGTH_LONG).show();
                     return true;
                 case R.id.chat1:

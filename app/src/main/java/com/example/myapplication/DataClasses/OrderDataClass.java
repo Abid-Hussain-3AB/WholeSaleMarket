@@ -17,6 +17,9 @@ public class OrderDataClass {
         this.grandTotal = grandTotal;
     }
 
+    public OrderDataClass() {
+    }
+
     public String getOrderId() {
         return orderId;
     }

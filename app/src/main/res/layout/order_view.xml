@@ -8,58 +8,63 @@
     android:background="@drawable/background_design1"
     android:orientation="vertical"
     android:padding="10dp">
-<androidx.cardview.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:elevation="30dp"
-    android:backgroundTint="@color/white"
-    android:foregroundGravity="center"
-    app:cardCornerRadius="990dp"
-    app:contentPadding="10dp">
-    <LinearLayout
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/ImgProductowner"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        app:civ_border_width="2dp"
-        app:civ_border_color="#FF000000"/>
+        android:backgroundTint="@color/white"
+        android:elevation="30dp"
+        android:foregroundGravity="center"
+        app:cardCornerRadius="990dp"
+        app:contentPadding="10dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingEnd="5dp"
-            android:paddingStart="8dp"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/tvProductName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/black"
-                android:text="Name"
-                tools:text="Name" />
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tvProductType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:layout_marginTop="10dp"
-                android:text="Type"
-                tools:text="Tpye" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ImgOrder"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="2dp" />
 
-            <TextView
-                android:id="@+id/tvProductQuantity"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:layout_marginTop="10dp"
-                android:text="Quantity"
-                tools:text="Quantity" />
+                android:orientation="vertical"
+                android:paddingStart="8dp"
+                android:paddingEnd="5dp">
+
+                <TextView
+                    android:id="@+id/tvOrderProductName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Name"
+                    android:textColor="@color/black"
+                    tools:text="Name" />
+
+                <TextView
+                    android:id="@+id/tvTotalBill"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Bill"
+                    android:textColor="@color/black"
+                    tools:text="Tpye" />
+
+                <TextView
+                    android:id="@+id/tvOrderQuantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Quantity"
+                    android:textColor="@color/black"
+                    tools:text="Quantity" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 </RelativeLayout>

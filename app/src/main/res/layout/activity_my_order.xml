@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".Buyer.MyOrderActivity">
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/browser_actions_bg_grey"
+        android:orientation="horizontal">
+     <androidx.appcompat.widget.AppCompatButton
+         android:layout_width="100dp"
+         android:layout_height="wrap_content"
+         android:background="@drawable/textview_design"
+         android:layout_marginTop="25dp"
+         android:layout_marginStart="20dp"
+         android:text="View All"
+         android:textColor="@color/black"
+         android:padding="30dp"
+         android:id="@+id/all">
+     </androidx.appcompat.widget.AppCompatButton>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textview_design"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="30dp"
+            android:padding="30dp"
+            android:text="To Pay"
+            android:textColor="@color/black"
+            android:id="@+id/pay">
+        </androidx.appcompat.widget.AppCompatButton>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textview_design"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="30dp"
+            android:padding="30dp"
+            android:text="To Ship"
+            android:textColor="@color/black"
+            android:id="@+id/ship">
+        </androidx.appcompat.widget.AppCompatButton>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/browser_actions_bg_grey"
+        android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textview_design"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginBottom="10dp"
+            android:padding="30dp"
+            android:text="To Receive"
+            android:textColor="@color/black"
+            android:layout_marginEnd="0dp"
+            android:id="@+id/receive">
+        </androidx.appcompat.widget.AppCompatButton>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textview_design"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginBottom="10dp"
+            android:padding="30dp"
+            android:text="To Review"
+            android:layout_marginEnd="40dp"
+            android:textColor="@color/black"
+            android:id="@+id/review">
+        </androidx.appcompat.widget.AppCompatButton>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp" />
+</androidx.appcompat.widget.LinearLayoutCompat>
