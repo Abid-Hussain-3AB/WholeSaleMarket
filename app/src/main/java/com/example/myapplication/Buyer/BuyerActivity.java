@@ -1,6 +1,5 @@
 package com.example.myapplication.Buyer;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -16,14 +15,10 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.myapplication.AdapterClasses.AdapterClassProduct;
 import com.example.myapplication.AdapterClasses.AdapterFragments;
-import com.example.myapplication.AdapterClasses.ItemClickListener;
 import com.example.myapplication.AdapterClasses.ItemClickListenerCart;
-import com.example.myapplication.AdapterClasses.ItemClickListenerCartAdd;
 import com.example.myapplication.Buyer.Fragments.AccountFrag;
 import com.example.myapplication.Buyer.Fragments.CartFrag;
-import com.example.myapplication.DataClasses.ProductDataClass;
 import com.example.myapplication.Other.SignInActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.Settings.AppCompact;
@@ -48,14 +43,10 @@ public class BuyerActivity extends AppCompact {
     public static final String password = "password";
     ImageButton searchView;
     SharedPreferences sharedPreferences;
-    public static final String Cart = "cart";
-    public static final String CartNumber = "CartNumber";
-    SharedPreferences sharedPreferences1;
     String Uname="";
     String Uid ="";
     int total=0;
     ItemClickListenerCart itemClickListenerCart;
-    ItemClickListenerCartAdd itemClickListenerCartAdd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +57,6 @@ public class BuyerActivity extends AppCompact {
             Uname =sharedPreferences.getString(name,"");
             Uid =sharedPreferences.getString(userName,"");
         }
-        sharedPreferences1 = getSharedPreferences(Cart, Context.MODE_PRIVATE);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
         toolbar = findViewById(R.id.toolBar);
@@ -116,25 +106,7 @@ public class BuyerActivity extends AppCompact {
             bottomNavigationView.getOrCreateBadge(R.id.cart).setNumber(0);
         }
         else {
-            mFirebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.hasChild(Uid)) {
-                       // for (DataSnapshot dataSnapshot1 : dataSnapshot.child(Uid).child("my cart").getChildren()) {
-                         //   ProductDataClass productDataClass = dataSnapshot1.getValue(ProductDataClass.class);
-                           total = (int) dataSnapshot.child(Uid).child("my cart").getChildrenCount();
-                           bottomNavigationView.getOrCreateBadge(R.id.cart).setNumber(total);
-                           SharedPreferences.Editor editor = sharedPreferences1.edit();
-                           editor.putString(CartNumber,"Abid");
-                           editor.commit();
-                       // }
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                  //  Toast.makeText(v.getContext(), "Fail to Update Data." + databaseError, Toast.LENGTH_SHORT).show();
-                }
-            });
+            cart();
         }
         itemClickListenerCart = new ItemClickListenerCart() {
             @Override
@@ -142,13 +114,27 @@ public class BuyerActivity extends AppCompact {
                 bottomNavigationView.getOrCreateBadge(R.id.cart).setNumber(total-1);
             }
         };
-        itemClickListenerCartAdd = new ItemClickListenerCartAdd() {
-            @Override
-            public void onClick(String s) {
-                bottomNavigationView.getOrCreateBadge(R.id.cart).setNumber(total+1);
-            }
-        };
     }
+
+    private void cart() {
+        mFirebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild(Uid)) {
+                    // for (DataSnapshot dataSnapshot1 : dataSnapshot.child(Uid).child("my cart").getChildren()) {
+                    //   ProductDataClass productDataClass = dataSnapshot1.getValue(ProductDataClass.class);
+                    total = (int) dataSnapshot.child(Uid).child("my cart").getChildrenCount();
+                    bottomNavigationView.getOrCreateBadge(R.id.cart).setNumber(total);
+                    // }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //  Toast.makeText(v.getContext(), "Fail to Update Data." + databaseError, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @SuppressLint("NonConstantResourceId")
         @Override
@@ -160,6 +146,7 @@ public class BuyerActivity extends AppCompact {
                     startActivity(intent);
                     return true;
                 case R.id.account:
+                    onPause();
                     viewPager.removeAllViews();
                     fragment = new AccountFrag();
                     loadFragment(fragment);
@@ -192,5 +179,9 @@ public class BuyerActivity extends AppCompact {
         transaction.addToBackStack(null);
         transaction.commit();
     }
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        cart();
+    }
 }

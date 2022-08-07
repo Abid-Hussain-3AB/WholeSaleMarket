@@ -5,21 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/background_design"
-    android:padding="20dp"
+    android:background="@color/white"
     tools:context=".Seller.SellerActivity">
-
-    <Button
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:orientation="vertical"
+    android:background="@drawable/background_design">
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnAddShop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/textview_design"
         android:text="Add Shop"
+        android:layout_marginStart="20dp"
+        android:backgroundTint="@color/white"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/black"
         android:textAllCaps="false"
         android:visibility="gone" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnADDP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,30 +34,45 @@
         android:background="@drawable/textview_design"
         android:text="Add Products"
         android:textAllCaps="false"
+        android:backgroundTint="@color/white"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/black"
         android:visibility="visible" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnviewProducts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/textview_design"
         android:text="View Products"
+        android:backgroundTint="@color/white"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/black"
+        android:layout_marginEnd="20dp"
         android:textAllCaps="false"
         android:visibility="visible" />
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnOrders"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:backgroundTint="@color/white"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/textview_design"
+        android:textColor="@color/black"
         android:text="Orders"
         android:textAllCaps="false"
         android:visibility="visible" />
+</androidx.appcompat.widget.LinearLayoutCompat>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:padding="20dp"
         android:id="@+id/rc_orders">
     </androidx.recyclerview.widget.RecyclerView>
 </androidx.appcompat.widget.LinearLayoutCompat>

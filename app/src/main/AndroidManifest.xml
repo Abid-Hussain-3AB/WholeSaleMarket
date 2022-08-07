@@ -26,17 +26,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".Buyer.MyOrderActivity"
+            android:exported="false"
+            android:theme="@style/DefaultTheme"/>
+        <activity
+            android:name=".Settings.AccountInfoActivity"
+            android:exported="false"
+            android:theme="@style/DefaultTheme" />
+        <activity
             android:name=".Buyer.AddressActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/DefaultTheme" />
         <activity
             android:name=".Buyer.StartOrderActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/DefaultTheme" />
         <activity
             android:name=".Buyer.PurchaseProductActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/DefaultTheme" />
         <activity
             android:name=".Settings.SettingActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/DefaultTheme" />
         <activity
             android:name=".Buyer.SearchActivity"
             android:exported="false"
@@ -83,7 +95,8 @@
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".Other.SignInActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/DefaultTheme" />
         <activity
             android:name=".Other.SplashActivity"
             android:exported="true"

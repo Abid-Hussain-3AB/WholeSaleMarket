@@ -6,14 +6,8 @@ import android.os.Handler;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.myapplication.Admin.AdminActivity;
 import com.example.myapplication.Buyer.BuyerActivity;
-import com.example.myapplication.Buyer.DetailActivity;
-import com.example.myapplication.Buyer.PurchaseProductActivity;
 import com.example.myapplication.R;
-import com.example.myapplication.Seller.SellerActivity;
-import com.google.firebase.database.DataSnapshot;
 
 public class SplashActivity extends AppCompatActivity {
     @Override

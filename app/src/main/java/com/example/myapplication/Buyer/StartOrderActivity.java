@@ -1,11 +1,14 @@
 package com.example.myapplication.Buyer;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -14,8 +17,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
+import com.example.myapplication.Settings.AppCompact;
 
-public class StartOrderActivity extends AppCompatActivity {
+public class StartOrderActivity extends AppCompact {
     int minteger = 0;
     int totalQuantity = 0;
     int totalPrice = 0;
@@ -36,10 +40,14 @@ public class StartOrderActivity extends AppCompatActivity {
     public static final String UserId = "UserId";
     public static final String ProductId = "ProductId";
     public static final String ShopId = "ShopId";
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_order);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle(R.string.start_order);
         Intent intent = getIntent();
         Price = intent.getStringExtra("price");
         Min = intent.getStringExtra("min");
@@ -124,5 +132,14 @@ public class StartOrderActivity extends AppCompatActivity {
                     }
                 }
             });
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

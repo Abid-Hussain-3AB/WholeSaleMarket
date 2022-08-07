@@ -11,6 +11,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +56,7 @@ public class ShowProductsActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 productDataClassesList.clear();
+                adapterClassOwner = new AdapterClassOwner(productDataClassesList,ShowProductsActivity.this);
                 adapterClassOwner.notifyDataSetChanged();
                 getData();
                 swipeRefreshLayout.setRefreshing(false);
@@ -97,18 +99,17 @@ public class ShowProductsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1)
-        {
-            if (resultCode == RESULT_OK) {
-                Toast.makeText(this, "START", Toast.LENGTH_LONG).show();
-            }
-            else if(resultCode == RESULT_CANCELED)
-            {
-                Toast.makeText(this, "NOT", Toast.LENGTH_LONG).show();
-            }
-        }
+    protected void onResume() {
+        super.onResume();
+       boolean b =  EditDelProductActivity.bool;
+       if (b)
+       {
+           productDataClassesList.clear();
+           adapterClassOwner = new AdapterClassOwner(productDataClassesList,ShowProductsActivity.this);
+           adapterClassOwner.notifyDataSetChanged();
+           getData();
+       }
     }
 }

@@ -20,7 +20,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.myapplication.Admin.AdminActivity;
 import com.example.myapplication.Seller.SellerActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.Buyer.BuyerActivity;
@@ -30,8 +29,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,7 +52,6 @@ public class SignInActivity extends AppCompatActivity implements AdapterView.OnI
         List Choice = new ArrayList();
         Choice.add("Buyer");
         Choice.add("Seller");
-        Choice.add("Admin");
         ArrayAdapter dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Choice);
         dataAdapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         spinner.setAdapter(dataAdapter);
@@ -146,32 +142,8 @@ public class SignInActivity extends AppCompatActivity implements AdapterView.OnI
 
                             }
                         });
-                    } else if (item.equals("Admin")) {
-                        aFirebaseDatabase.child("Admin").addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                if (dataSnapshot.hasChild(Phone)) {
-                                    final String getpassword = "admin";
-                                    if (getpassword.equals(UPassword)) {
-                                        Toast.makeText(SignInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(SignInActivity.this, AdminActivity.class);
-                                        startActivity(intent);
-                                    } else {
-                                        Toast.makeText(SignInActivity.this, "Wrong User Name or Password or Role", Toast.LENGTH_LONG).show();
-                                    }
-                                } else {
-                                    Toast.makeText(SignInActivity.this, "Wrong User Name or Password or Role", Toast.LENGTH_LONG).show();
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });
                     }
                 }
-
             }
                 else {
                     Toast.makeText(SignInActivity.this, "No Internet Connection", Toast.LENGTH_LONG).show();

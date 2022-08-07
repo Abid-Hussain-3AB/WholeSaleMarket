@@ -31,13 +31,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingEnd="5dp"
-            android:paddingStart="8dp"
+            android:paddingStart="15dp"
             android:orientation="vertical">
             <TextView
                 android:id="@+id/tvProductName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:maxLines="1"
                 android:textColor="@color/black"
                 android:text="Name"
                 tools:text="Name" />
@@ -48,6 +49,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:layout_marginTop="10dp"
+                android:maxLines="1"
                 android:text="Type"
                 tools:text="Tpye" />
 
@@ -56,6 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
+                android:maxLines="1"
                 android:layout_marginTop="10dp"
                 android:text="Quantity"
                 tools:text="Quantity" />

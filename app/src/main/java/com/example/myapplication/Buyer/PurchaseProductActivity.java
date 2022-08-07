@@ -8,32 +8,26 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.text.Html;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.myapplication.AdapterClasses.AdapterClassProduct;
-import com.example.myapplication.AdapterClasses.ClickListenerAddress;
 import com.example.myapplication.DataClasses.BuyerAddressDataClass;
 import com.example.myapplication.DataClasses.OrderDataClass;
-import com.example.myapplication.DataClasses.ProductDataClass;
 import com.example.myapplication.R;
+import com.example.myapplication.Settings.AppCompact;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
-public class PurchaseProductActivity extends AppCompatActivity {
+public class PurchaseProductActivity extends AppCompact {
 
     TextView pName,pPrice,pQuantity,totalPrice,subTotal,shipFee,grandtotal,tvship, tvAddress;
     String Name,Price, image;
@@ -65,6 +59,9 @@ public class PurchaseProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase_product);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("Purchase Product");
         sharedPreferences = getSharedPreferences(filename, Context.MODE_PRIVATE);
         uniqueID = UUID.randomUUID().toString();
         if (sharedPreferences.contains(ProductName)){
@@ -77,7 +74,6 @@ public class PurchaseProductActivity extends AppCompatActivity {
           TotalPrice1 = sharedPreferences.getInt(TotalPrice,0);
           Quantity = sharedPreferences.getInt(TotalQuantity,0);
         }
-        Toast.makeText(this, shop_id, Toast.LENGTH_SHORT).show();
         tvAddress = findViewById(R.id.Address);
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("User");
         mFirebaseDatabase1 = FirebaseDatabase.getInstance().getReferenceFromUrl("https://login-b93ab-default-rtdb.firebaseio.com/");
@@ -96,7 +92,7 @@ public class PurchaseProductActivity extends AppCompatActivity {
         tvship.setText("  Rs. "+ship+"\n\n  Home Delivery\n\n  Get by 16-18 Jun");
         pName.setText(Name);
         pPrice.setText("Rs. "+Price+" (per item)");
-        pQuantity.setText("Quantity: "+Quantity);
+        pQuantity.setText(""+Quantity);
         totalPrice.setText("Rs. "+TotalPrice1);
         subTotal.setText("Rs. "+TotalPrice1);
         shipFee.setText("Rs. "+ship);
@@ -185,5 +181,18 @@ public class PurchaseProductActivity extends AppCompatActivity {
             }
         });
     }
-
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Shipment();
+    }
 }

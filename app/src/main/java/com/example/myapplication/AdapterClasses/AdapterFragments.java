@@ -4,9 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-
-import com.example.myapplication.Admin.Fragments.ApprovedShops;
-import com.example.myapplication.Admin.Fragments.RequestedShops;
 import com.example.myapplication.Buyer.Fragments.AllProductFrag;
 import com.example.myapplication.Buyer.Fragments.ApparelFrag;
 import com.example.myapplication.Buyer.Fragments.ConstructionFrag;
